@@ -29,6 +29,8 @@ public class PlayerController : Controller<GamePlayApplication>
     {
         float moveBy = inputDirection * playerModel.moveSpeed * Time.deltaTime;
         playerView.rb.velocity = new Vector2(moveBy, playerView.rb.velocity.y);
+
+        Debug.Log(Time.deltaTime);
     }
 
     private void Jump()
