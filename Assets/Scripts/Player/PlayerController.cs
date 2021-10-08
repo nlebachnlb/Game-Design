@@ -8,7 +8,8 @@ public class PlayerController : Controller<GamePlayApplication>
 {
     public PlayerModel playerModel { get; private set; }
     public PlayerView playerView { get; private set; }
-    public float inputDirection { get; private set; }
+    public float horizontalInputDirection { get; private set; }
+    public float verticalInputDicretion { get; private set; }
 
     private void Start()
     {
@@ -23,16 +24,17 @@ public class PlayerController : Controller<GamePlayApplication>
         {
             state.InitController(this);
         }
+
     }
 
     public void Move()
     {
-        float moveBy = inputDirection * playerModel.moveSpeed * Time.fixedDeltaTime;
+        if (playerModel.isDashing) return;
 
-        Debug.Log(Time.fixedDeltaTime); 
+        float moveBy = horizontalInputDirection * playerModel.moveSpeed * Time.fixedDeltaTime;
+
         playerView.rb.velocity = new Vector2(moveBy, playerView.rb.velocity.y);
 
-        Debug.Log(Time.deltaTime);
     }
 
     private void Jump()
@@ -65,6 +67,84 @@ public class PlayerController : Controller<GamePlayApplication>
         }
     }
 
+    private void Dash()
+    {
+        if (Input.GetKeyDown(playerModel.dashKey))
+        {
+            playerModel.dashDirection =
+                horizontalInputDirection != 0 || verticalInputDicretion != 0 ?
+                new Vector2(horizontalInputDirection, verticalInputDicretion) :
+                Vector2.right * playerModel.facing;
+
+            playerModel.isDashing = true;
+            playerModel.dashTimer = playerModel.maxDashTime;
+
+            playerView.rb.gravityScale = 0;
+        }
+
+        if(playerModel.isDashing )
+        {
+            if (playerModel.dashTimer >= 0)
+            {
+                playerView.rb.velocity = Vector2.zero;
+                playerView.rb.velocity = playerModel.dashDirection.normalized * playerModel.dashSpeed * Time.fixedDeltaTime;
+
+                playerModel.dashTimer -= Time.deltaTime; 
+            }
+            else
+            {
+                playerView.rb.gravityScale = 5f; 
+
+                playerModel.isDashing = false; 
+            }
+        }
+        else 
+        {
+
+        }
+        //if (playerModel.dashDirection == 0)
+        //{
+        //    if (horizontalInputDirection > 0)
+        //        playerModel.dashDirection = 1;
+        //    if (horizontalInputDirection < 0)
+        //        playerModel.dashDirection = 2;
+        //    if (verticalInputDicretion > 0)
+        //        playerModel.dashDirection = 3;
+        //    if (verticalInputDicretion < 0)
+        //        playerModel.dashDirection = 4;
+        //}
+        //else
+        //{
+        //    if (playerModel.dashTime <= 0)
+        //    {
+        //        playerModel.dashDirection = 0;
+        //        playerModel.dashTime = playerModel.startDashTime;
+        //        playerView.rb.velocity = Vector2.zero; 
+        //    }
+        //    else
+        //    {
+        //        playerModel.dashTime -= Time.deltaTime;
+
+        //        switch (playerModel.dashDirection)
+        //        {
+        //            case 1:
+        //                playerView.rb.velocity = Vector2.right * playerModel.dashSpeed; 
+        //                break;
+        //            case 2:
+        //                playerView.rb.velocity = Vector2.left * playerModel.dashSpeed;
+        //                break;
+        //            case 3:
+        //                playerView.rb.velocity = Vector2.up * playerModel.dashSpeed;
+        //                break;
+        //            case 4:
+        //                playerView.rb.velocity = Vector2.down * playerModel.dashSpeed;
+        //                break;
+        //        }
+        //    }
+        //}
+
+    }
+
     private void Update()
     {
         UpdateLoop();
@@ -74,20 +154,22 @@ public class PlayerController : Controller<GamePlayApplication>
     public void UpdateAnimator()
     {
         playerView.animator.SetBool("isOnGround", playerModel.isGrounded);
-        playerView.animator.SetBool("isWalking", inputDirection != 0);
+        playerView.animator.SetBool("isWalking", horizontalInputDirection != 0);
         playerView.animator.SetFloat("yVelocity", playerView.rb.velocity.y);
 
-        if (inputDirection != 0)
+        if (horizontalInputDirection != 0)
         {
-            playerModel.facing = (int)Mathf.Sign(inputDirection);
+            playerModel.facing = (int)Mathf.Sign(horizontalInputDirection);
             playerView.visual.flipX = playerModel.facing < 0;
         }
     }
 
     public void UpdateLoop()
     {
-        inputDirection = Input.GetAxisRaw("Horizontal");
-        Move();
-        Jump(); 
+        horizontalInputDirection = Input.GetAxisRaw("Horizontal");
+        verticalInputDicretion = Input.GetAxisRaw("Vertical");
+        Move(); 
+        Jump();
+        Dash(); 
     }
 }

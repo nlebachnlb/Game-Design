@@ -10,23 +10,29 @@ public class PlayerModel : Model<GamePlayApplication>
     [HideInInspector]
     public bool isGrounded;
     [HideInInspector]
-    public int facing;
+    public int facing = 1;
 
     [HideInInspector]
     public float jumpTimeCounter;
     [HideInInspector]
     public bool isJumping;
 
+    public float dashTimer;
+    public bool isDashing;
+    public Vector2 dashDirection; 
+
     [Space]
     [Header("Key")]
-    public KeyCode jumpKey;
     public KeyCode rightKey; 
-    public KeyCode leftKey; 
+    public KeyCode leftKey;
+    public KeyCode jumpKey;
+    public KeyCode dashKey;
 
     [Space]
     [Header("Stats")]
     public float moveSpeed;
     public float jumpForce;
+    public float dashSpeed; 
 
     [Space]
     [Header("Jump Utils")] 
@@ -36,6 +42,11 @@ public class PlayerModel : Model<GamePlayApplication>
 
     [Space]
     public float jumpTime;
+
+    [Space]
+    [Header("Dash Utils")]
+    public float maxDashTime;
+
 
 
     // Start is called before the first frame update
@@ -48,5 +59,4 @@ public class PlayerModel : Model<GamePlayApplication>
     {
         this.jumpTimeCounter = this.jumpTime; 
     }
-
 }
