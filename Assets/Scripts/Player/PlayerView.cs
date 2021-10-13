@@ -13,6 +13,8 @@ public class PlayerView : View<GamePlayApplication>
 
     [SerializeField]
     private GameObject feetPos;
+    [SerializeField]
+    private ParticleSystem dashFx;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,5 +35,15 @@ public class PlayerView : View<GamePlayApplication>
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere((Vector2)this.transform.position, 3f);
+    }
+
+    public void PlayDash()
+    {
+        dashFx.Play();
+    }
+
+    public void StopDash()
+    {
+        dashFx.Stop();
     }
 }
