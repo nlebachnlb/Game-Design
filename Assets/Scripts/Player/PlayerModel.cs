@@ -19,11 +19,14 @@ public class PlayerModel : Model<GamePlayApplication>
 
     public float dashTimer;
     public bool isDashing;
-    public Vector2 dashDirection; 
+    public Vector2 dashDirection;
+
+    public int MaxNumberOfDash;
+    public int CurrentNumberofDash;
 
     [Space]
     [Header("Key")]
-    public KeyCode rightKey; 
+    public KeyCode rightKey;
     public KeyCode leftKey;
     public KeyCode jumpKey;
     public KeyCode dashKey;
@@ -32,10 +35,10 @@ public class PlayerModel : Model<GamePlayApplication>
     [Header("Stats")]
     public float moveSpeed;
     public float jumpForce;
-    public float dashSpeed; 
+    public float dashSpeed;
 
     [Space]
-    [Header("Jump Utils")] 
+    [Header("Jump Utils")]
     public float checkRadius;
     public Transform feetPosition;
     public LayerMask whatIsGround;
@@ -52,11 +55,11 @@ public class PlayerModel : Model<GamePlayApplication>
     // Start is called before the first frame update
     void Start()
     {
-        playerControler = app.controller.GetComponentInChildren<PlayerController>(); 
+        playerControler = app.controller.GetComponentInChildren<PlayerController>();
     }
 
     public void ResetJumpTimeCounter()
     {
-        this.jumpTimeCounter = this.jumpTime; 
+        this.jumpTimeCounter = this.jumpTime;
     }
 }

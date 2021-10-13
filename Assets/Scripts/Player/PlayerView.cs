@@ -11,6 +11,9 @@ public class PlayerView : View<GamePlayApplication>
     public Animator animator { get; private set; }
     public SpriteRenderer visual { get; private set; }
 
+    [SerializeField]
+    private GameObject feetPos;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,5 +22,13 @@ public class PlayerView : View<GamePlayApplication>
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         visual = GetComponent<SpriteRenderer>();
+
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere((Vector2)feetPos.transform.position, 0.3f);
     }
 }

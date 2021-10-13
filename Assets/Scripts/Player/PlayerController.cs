@@ -16,15 +16,11 @@ public class PlayerController : Controller<GamePlayApplication>
         playerModel = app.model.GetComponentInChildren<PlayerModel>();
         playerView = app.view.GetComponentInChildren<PlayerView>();
 
-        Debug.Log(playerView != null);
-        Debug.Log(playerView.animator != null);
-
         var stateBehaviours = playerView.animator.GetBehaviours<StateMachineBehaviourExt>();
         foreach (var state in stateBehaviours)
         {
             state.InitController(this);
         }
-
     }
 
     public void Move()
@@ -40,36 +36,41 @@ public class PlayerController : Controller<GamePlayApplication>
     private void Jump()
     {
         playerModel.isGrounded = Physics2D.OverlapCircle(playerModel.feetPosition.position, playerModel.checkRadius, playerModel.whatIsGround);
+        // reset stat when touch the ground;
+        if (playerModel.isGrounded)
+        {
+            playerModel.CurrentNumberofDash = 0;
+        }
 
         if (playerModel.isGrounded && Input.GetKeyDown(playerModel.jumpKey))
         {
             playerModel.isJumping = true;
-            playerModel.ResetJumpTimeCounter(); 
-            playerView.rb.velocity = Vector2.up * playerModel.jumpForce + new Vector2(playerView.rb.velocity.x, 0); 
+            playerModel.ResetJumpTimeCounter();
+            playerView.rb.velocity = Vector2.up * playerModel.jumpForce + new Vector2(playerView.rb.velocity.x, 0);
         }
 
         if (Input.GetKey(playerModel.jumpKey) && playerModel.isJumping == true)
         {
-            if(playerModel.jumpTimeCounter > 0)
+            if (playerModel.jumpTimeCounter > 0)
             {
                 playerView.rb.velocity = Vector2.up * playerModel.jumpForce + new Vector2(playerView.rb.velocity.x, 0);
-                playerModel.jumpTimeCounter -= Time.deltaTime; 
+                playerModel.jumpTimeCounter -= Time.deltaTime;
             }
             else
             {
-                playerModel.isJumping = false; 
+                playerModel.isJumping = false;
             }
         }
 
-        if(Input.GetKeyUp(playerModel.jumpKey))
+        if (Input.GetKeyUp(playerModel.jumpKey))
         {
-            playerModel.isJumping = false; 
+            playerModel.isJumping = false;
         }
     }
 
     private void Dash()
     {
-        if (Input.GetKeyDown(playerModel.dashKey))
+        if (Input.GetKeyDown(playerModel.dashKey) && (playerModel.CurrentNumberofDash < playerModel.MaxNumberOfDash))
         {
             playerModel.dashDirection =
                 horizontalInputDirection != 0 || verticalInputDicretion != 0 ?
@@ -80,68 +81,32 @@ public class PlayerController : Controller<GamePlayApplication>
             playerModel.dashTimer = playerModel.maxDashTime;
 
             playerView.rb.gravityScale = 0;
+
+            playerModel.CurrentNumberofDash++;
+            Debug.Log("INFO" + playerModel.isGrounded);
+            Debug.Log("[INFO]" + playerModel.CurrentNumberofDash);
         }
 
-        if(playerModel.isDashing )
+        if (playerModel.isDashing)
         {
             if (playerModel.dashTimer >= 0)
             {
                 playerView.rb.velocity = Vector2.zero;
                 playerView.rb.velocity = playerModel.dashDirection.normalized * playerModel.dashSpeed * Time.fixedDeltaTime;
 
-                playerModel.dashTimer -= Time.deltaTime; 
+                playerModel.dashTimer -= Time.deltaTime;
             }
             else
             {
-                playerView.rb.gravityScale = 5f; 
+                playerView.rb.gravityScale = 5f;
 
-                playerModel.isDashing = false; 
+                playerModel.isDashing = false;
             }
         }
-        else 
+        else
         {
 
         }
-        //if (playerModel.dashDirection == 0)
-        //{
-        //    if (horizontalInputDirection > 0)
-        //        playerModel.dashDirection = 1;
-        //    if (horizontalInputDirection < 0)
-        //        playerModel.dashDirection = 2;
-        //    if (verticalInputDicretion > 0)
-        //        playerModel.dashDirection = 3;
-        //    if (verticalInputDicretion < 0)
-        //        playerModel.dashDirection = 4;
-        //}
-        //else
-        //{
-        //    if (playerModel.dashTime <= 0)
-        //    {
-        //        playerModel.dashDirection = 0;
-        //        playerModel.dashTime = playerModel.startDashTime;
-        //        playerView.rb.velocity = Vector2.zero; 
-        //    }
-        //    else
-        //    {
-        //        playerModel.dashTime -= Time.deltaTime;
-
-        //        switch (playerModel.dashDirection)
-        //        {
-        //            case 1:
-        //                playerView.rb.velocity = Vector2.right * playerModel.dashSpeed; 
-        //                break;
-        //            case 2:
-        //                playerView.rb.velocity = Vector2.left * playerModel.dashSpeed;
-        //                break;
-        //            case 3:
-        //                playerView.rb.velocity = Vector2.up * playerModel.dashSpeed;
-        //                break;
-        //            case 4:
-        //                playerView.rb.velocity = Vector2.down * playerModel.dashSpeed;
-        //                break;
-        //        }
-        //    }
-        //}
 
     }
 
@@ -168,8 +133,8 @@ public class PlayerController : Controller<GamePlayApplication>
     {
         horizontalInputDirection = Input.GetAxisRaw("Horizontal");
         verticalInputDicretion = Input.GetAxisRaw("Vertical");
-        Move(); 
+        Move();
         Jump();
-        Dash(); 
+        Dash();
     }
 }
