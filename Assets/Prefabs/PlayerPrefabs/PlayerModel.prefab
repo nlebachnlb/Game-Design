@@ -47,14 +47,22 @@ MonoBehaviour:
   facing: 0
   jumpTimeCounter: 0
   isJumping: 0
-  jumpKey: 32
+  dashTimer: 0
+  isDashing: 0
+  dashDirection: {x: 0, y: 0}
+  MaxNumberOfDash: 1
+  CurrentNumberofDash: 0
   rightKey: 0
   leftKey: 0
-  moveSpeed: 600
+  jumpKey: 32
+  dashKey: 99
+  moveSpeed: 550
   jumpForce: 10
+  dashSpeed: 1000
   checkRadius: 0.3
   feetPosition: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   jumpTime: 0.25
+  maxDashTime: 0.6

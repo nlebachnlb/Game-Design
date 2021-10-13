@@ -26,11 +26,8 @@ public class PlayerController : Controller<GamePlayApplication>
     public void Move()
     {
         if (playerModel.isDashing) return;
-
         float moveBy = horizontalInputDirection * playerModel.moveSpeed * Time.fixedDeltaTime;
-
         playerView.rb.velocity = new Vector2(moveBy, playerView.rb.velocity.y);
-
     }
 
     private void Jump()
@@ -91,19 +88,25 @@ public class PlayerController : Controller<GamePlayApplication>
         {
             if (playerModel.dashTimer > 0)
             {
-                playerView.rb.velocity = playerModel.dashDirection.normalized * playerModel.dashSpeed * Time.fixedDeltaTime;
-                playerModel.dashTimer -= Time.deltaTime;
+                playerView.rb.velocity = playerModel.dashDirection * playerModel.dashSpeed * Time.fixedDeltaTime;
+                playerModel.dashTimer -= Time.fixedDeltaTime;
             }
             else
             {
-                playerView.rb.velocity = Vector2.zero;
+                // playerView.rb.velocity = Vector2.zero;
+                var vel = playerView.rb.velocity;
+                vel.y *= 0.25f;
+                playerView.rb.velocity = vel;
                 playerView.rb.gravityScale = 5f;
                 playerModel.isDashing = false;
             }
         }
         else
         {
-
+            if (playerView.rb.gravityScale > 5f)
+            {
+                playerView.rb.gravityScale -= Time.fixedDeltaTime * 2f;
+            }
         }
 
     }
