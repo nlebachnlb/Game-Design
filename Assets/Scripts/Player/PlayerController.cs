@@ -25,7 +25,7 @@ public class PlayerController : Controller<GamePlayApplication>
 
     public void Move()
     {
-        if (playerModel.isDashing) return;
+        if (playerModel.IsDashing) return;
         float moveBy = horizontalInputDirection * playerModel.moveSpeed * Time.fixedDeltaTime;
         playerView.rb.velocity = new Vector2(moveBy, playerView.rb.velocity.y);
     }
@@ -33,11 +33,6 @@ public class PlayerController : Controller<GamePlayApplication>
     private void Jump()
     {
         playerModel.isGrounded = Physics2D.OverlapCircle(playerModel.feetPosition.position, playerModel.checkRadius, playerModel.whatIsGround);
-        // reset stat when touch the ground;
-        if (playerModel.isGrounded)
-        {
-            playerModel.CurrentNumberofDash = 0;
-        }
 
         if (playerModel.isGrounded && Input.GetKeyDown(playerModel.jumpKey))
         {
@@ -67,14 +62,15 @@ public class PlayerController : Controller<GamePlayApplication>
 
     private void Dash()
     {
-        if (Input.GetKeyDown(playerModel.dashKey) && (playerModel.CurrentNumberofDash < playerModel.MaxNumberOfDash))
+        if (((Input.GetKeyDown(playerModel.dashKey)) || (Input.GetMouseButtonDown(0)))
+            && (playerModel.CurrentNumberofDash < playerModel.MaxNumberOfDash))
         {
             playerModel.dashDirection =
                 horizontalInputDirection != 0 || verticalInputDicretion != 0 ?
                 new Vector2(horizontalInputDirection, verticalInputDicretion) :
                 Vector2.right * playerModel.facing;
 
-            playerModel.isDashing = true;
+            playerModel.dashPhase = 1;
             playerModel.dashTimer = playerModel.maxDashTime;
 
             playerView.rb.gravityScale = 0f;
@@ -84,43 +80,65 @@ public class PlayerController : Controller<GamePlayApplication>
             Debug.Log("[INFO]" + playerModel.CurrentNumberofDash);
         }
 
-        if (playerModel.isDashing)
+        if (playerModel.IsDashing)
         {
-            if (playerModel.dashTimer > 0)
+            switch (playerModel.dashPhase)
             {
-                playerView.rb.velocity = playerModel.dashDirection * playerModel.dashSpeed * Time.fixedDeltaTime;
-                playerModel.dashTimer -= Time.fixedDeltaTime;
-            }
-            else
-            {
-                // playerView.rb.velocity = Vector2.zero;
-                var vel = playerView.rb.velocity;
-                vel.y *= 0.25f;
-                playerView.rb.velocity = vel;
-                playerView.rb.gravityScale = 5f;
-                playerModel.isDashing = false;
+                case 1:
+                    {
+                        if (playerModel.dashTimer > playerModel.maxDashTime * 0.1f)
+                        {
+                            playerView.rb.velocity = playerModel.dashDirection.normalized * playerModel.dashSpeed * Time.fixedDeltaTime;
+                            playerModel.dashTimer -= Time.deltaTime;
+                        }
+                        else
+                        {
+                            // playerView.rb.velocity = Vector2.zero;
+                            var vel = playerView.rb.velocity;
+                            vel.y *= 0.25f;
+                            vel.x *= 0.25f;
+                            playerView.rb.velocity = vel;
+                            playerView.rb.gravityScale = 5f;
+                            playerModel.dashPhase = 2;
+                        }
+                    }
+                    break;
+                case 2:
+                    {
+                        var epsilon = playerModel.isWalking ? playerModel.moveSpeed * 0.5f * Time.fixedDeltaTime : playerModel.dashFriction;
+                        playerView.rb.velocity += -playerModel.dashDirection.normalized * playerModel.dashFriction * Time.fixedDeltaTime;
+
+                        if (playerView.rb.velocity.magnitude <= epsilon)
+                        {
+                            playerModel.dashPhase = 0;
+                        }
+                    }
+                    break;
             }
         }
         else
         {
-            if (playerView.rb.gravityScale > 5f)
-            {
-                playerView.rb.gravityScale -= Time.fixedDeltaTime * 2f;
-            }
+            if (playerModel.isGrounded && playerView.rb.velocity.y >= 0)
+                playerModel.CurrentNumberofDash = 0;
         }
 
     }
 
-    private void Update()
+    private void LateUpdate()
+    {
+        UpdateAnimator();
+    }
+
+    private void FixedUpdate()
     {
         UpdateLoop();
-        UpdateAnimator();
     }
 
     public void UpdateAnimator()
     {
         playerView.animator.SetBool("isOnGround", playerModel.isGrounded);
-        playerView.animator.SetBool("isWalking", horizontalInputDirection != 0);
+        playerView.animator.SetBool("isDashing", playerModel.IsDashing);
+        playerView.animator.SetBool("isWalking", playerModel.isWalking);
         playerView.animator.SetFloat("yVelocity", playerView.rb.velocity.y);
 
         if (horizontalInputDirection != 0)
@@ -132,8 +150,9 @@ public class PlayerController : Controller<GamePlayApplication>
 
     public void UpdateLoop()
     {
-        horizontalInputDirection = Input.GetAxisRaw("Horizontal");
+        horizontalInputDirection = Input.GetAxis("Horizontal");
         verticalInputDicretion = Input.GetAxisRaw("Vertical");
+        playerModel.isWalking = horizontalInputDirection != 0;
         Move();
         Jump();
         Dash();

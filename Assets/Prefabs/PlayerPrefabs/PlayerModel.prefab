@@ -47,9 +47,11 @@ MonoBehaviour:
   facing: 0
   jumpTimeCounter: 0
   isJumping: 0
+  isWalking: 0
   dashTimer: 0
-  isDashing: 0
+  dashPhase: 0
   dashDirection: {x: 0, y: 0}
+  dashFriction: 0.2
   MaxNumberOfDash: 1
   CurrentNumberofDash: 0
   rightKey: 0
@@ -65,4 +67,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   jumpTime: 0.25
-  maxDashTime: 0.6
+  maxDashTime: 0.2

@@ -1155,6 +1155,18 @@ PrefabInstance:
       value: PlayerModel
       objectReference: {fileID: 0}
     - target: {fileID: 8070418255812922630, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
+      propertyPath: dashSpeed
+      value: 1100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070418255812922630, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
+      propertyPath: maxDashTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070418255812922630, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
+      propertyPath: dashFriction
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070418255812922630, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
       propertyPath: feetPosition
       value: 
       objectReference: {fileID: 1210967075}

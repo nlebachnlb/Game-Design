@@ -7,19 +7,21 @@ public class PlayerModel : Model<GamePlayApplication>
 {
     PlayerController playerControler;
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool isGrounded;
     [HideInInspector]
     public int facing = 1;
 
     [HideInInspector]
     public float jumpTimeCounter;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isJumping;
+    public bool isWalking;
 
     public float dashTimer;
-    public bool isDashing;
+    public int dashPhase;
     public Vector2 dashDirection;
+    public float dashFriction;
 
     public int MaxNumberOfDash;
     public int CurrentNumberofDash;
@@ -50,7 +52,7 @@ public class PlayerModel : Model<GamePlayApplication>
     [Header("Dash Utils")]
     public float maxDashTime;
 
-
+    public bool IsDashing { get { return dashPhase > 0; } }
 
     // Start is called before the first frame update
     void Start()
