@@ -80,7 +80,7 @@ public class PlayerController : Controller<GamePlayApplication>
             playerModel.isDashing = true;
             playerModel.dashTimer = playerModel.maxDashTime;
 
-            playerView.rb.gravityScale = 0;
+            playerView.rb.gravityScale = 0f;
 
             playerModel.CurrentNumberofDash++;
             Debug.Log("INFO" + playerModel.isGrounded);
@@ -89,17 +89,15 @@ public class PlayerController : Controller<GamePlayApplication>
 
         if (playerModel.isDashing)
         {
-            if (playerModel.dashTimer >= 0)
+            if (playerModel.dashTimer > 0)
             {
-                playerView.rb.velocity = Vector2.zero;
                 playerView.rb.velocity = playerModel.dashDirection.normalized * playerModel.dashSpeed * Time.fixedDeltaTime;
-
                 playerModel.dashTimer -= Time.deltaTime;
             }
             else
             {
+                playerView.rb.velocity = Vector2.zero;
                 playerView.rb.gravityScale = 5f;
-
                 playerModel.isDashing = false;
             }
         }
