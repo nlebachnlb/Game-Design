@@ -168,4 +168,11 @@ public class PlayerController : Controller<GamePlayApplication>
     {
         playerView.transform.position = position;
     }
+
+    #region Event callback
+    public void OnDamaged(BaseHazard hazard)
+    {
+        app.controller.RespawnPlayer(app.model.lastSpawnPosition);
+    }
+    #endregion
 }

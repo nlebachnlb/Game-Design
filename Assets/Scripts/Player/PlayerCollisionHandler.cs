@@ -5,11 +5,22 @@ using Framework.AMVC;
 
 public class PlayerCollisionHandler : Controller<GamePlayApplication>
 {
+    public PlayerController playerController;
+
+    private void Awake()
+    {
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("SpawnPoint"))
         {
-            collision.gameObject.GetComponent<SpawnPoint>().OnPlayerEnter();
+            collision.gameObject.GetComponent<SpawnPoint>().OnPlayerEnter(playerController);
+        }
+
+        if (collision.CompareTag("Hazard"))
+        {
+            collision.gameObject.GetComponent<BaseHazard>().OnPlayerEnter(playerController);
         }
     }
 
@@ -17,7 +28,12 @@ public class PlayerCollisionHandler : Controller<GamePlayApplication>
     {
         if (collision.CompareTag("SpawnPoint"))
         {
-            collision.gameObject.GetComponent<SpawnPoint>().OnPlayerExit();
+            collision.gameObject.GetComponent<SpawnPoint>().OnPlayerExit(playerController);
+        }
+
+        if (collision.CompareTag("Hazard"))
+        {
+            collision.gameObject.GetComponent<BaseHazard>().OnPlayerExit(playerController);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Framework.AMVC;
 
-public class SpawnPoint : View<GamePlayApplication>
+public class SpawnPoint : BaseTrigger
 {
     private int state;
 
@@ -12,13 +12,13 @@ public class SpawnPoint : View<GamePlayApplication>
         state = 0;
     }
 
-    public void OnPlayerEnter()
+    public override void OnPlayerEnter(PlayerController player)
     {
         app.model.lastSpawnPosition = transform.position;
         state = 1;
     }
 
-    public void OnPlayerExit()
+    public override void OnPlayerExit(PlayerController player)
     {
         state = 0;
     }
