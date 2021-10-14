@@ -114,7 +114,7 @@ public class PlayerController : Controller<GamePlayApplication>
             playerView.rb.velocity = Vector2.up * playerModel.jumpForce + new Vector2(playerView.rb.velocity.x, 0);
         }
 
-        if (((Input.GetKeyDown(playerModel.dashKey)) || (Input.GetMouseButtonDown(0)))
+        if (((Input.GetKeyDown(playerModel.dashKey)) || (Input.GetMouseButtonDown(1)))
             && (playerModel.CurrentNumberofDash < playerModel.MaxNumberOfDash))
         {
             playerModel.dashDirection =
@@ -131,7 +131,7 @@ public class PlayerController : Controller<GamePlayApplication>
             Debug.Log("INFO" + playerModel.isGrounded);
             Debug.Log("[INFO]" + playerModel.CurrentNumberofDash);
 
-            playerView.PlayDash();
+            playerView.PlayDash(playerModel.dashDirection);
         }
     }
 

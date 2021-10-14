@@ -14,7 +14,9 @@ public class PlayerView : View<GamePlayApplication>
     [SerializeField]
     private GameObject feetPos;
     [SerializeField]
-    private ParticleSystem dashFx;
+    private ParticleSystem dashFx, dashFx2;
+    [SerializeField]
+    private SpriteRenderer dashMotion;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,8 +26,6 @@ public class PlayerView : View<GamePlayApplication>
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         visual = GetComponent<SpriteRenderer>();
-
-
     }
 
     private void OnDrawGizmos()
@@ -37,13 +37,24 @@ public class PlayerView : View<GamePlayApplication>
         Gizmos.DrawWireSphere((Vector2)this.transform.position, 3f);
     }
 
-    public void PlayDash()
+    public void PlayDash(Vector2 direction)
     {
         dashFx.Play();
+        dashMotion.gameObject.SetActive(true);
+        dashMotion.gameObject.GetComponent<Animator>().SetTrigger("Dash");
+        visual.enabled = false;
+        //dashMotion.flipX = visual.flipX;
+        var angle = dashMotion.gameObject.transform.eulerAngles;
+        var ang = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        angle.z = ang;
+        dashMotion.transform.eulerAngles = angle;
+        dashFx2.startRotation = ang;
     }
 
     public void StopDash()
     {
         dashFx.Stop();
+        visual.enabled = true;
+        dashMotion.gameObject.SetActive(false);
     }
 }
