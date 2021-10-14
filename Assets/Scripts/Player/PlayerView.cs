@@ -48,7 +48,7 @@ public class PlayerView : View<GamePlayApplication>
         var ang = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         angle.z = ang;
         dashMotion.transform.eulerAngles = angle;
-        dashFx2.startRotation = ang;
+        //dashFx2.startRotation = ang;
     }
 
     public void StopDash()
