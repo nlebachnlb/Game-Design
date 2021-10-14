@@ -163,4 +163,9 @@ public class PlayerController : Controller<GamePlayApplication>
         Jump();
         Dash();
     }
+
+    public void SpawnAt(Vector2 position, bool reborn = true)
+    {
+        playerView.transform.position = position;
+    }
 }

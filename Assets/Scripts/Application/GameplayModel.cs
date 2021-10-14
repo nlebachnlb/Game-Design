@@ -5,17 +5,11 @@ using UnityEngine;
 
 public class GameplayModel : Model<GamePlayApplication>
 {
-    public PlayerModel PlayerModel { get; private set; } 
+    public PlayerModel PlayerModel { get; private set; }
+    public Vector2 lastSpawnPosition;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         PlayerModel = GetComponentInChildren<PlayerModel>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

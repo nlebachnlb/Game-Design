@@ -5,15 +5,24 @@ using UnityEngine;
 
 public class GameplayController : Controller<GamePlayApplication>
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerController playerController { get; private set; }
+
+    private void Awake()
     {
-        
+        playerController = GetComponentInChildren<PlayerController>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            RespawnPlayer(app.model.lastSpawnPosition);
+        }
+    }
+
+    public void RespawnPlayer(Vector2 position)
+    {
+        playerController.SpawnAt(position);
     }
 }
