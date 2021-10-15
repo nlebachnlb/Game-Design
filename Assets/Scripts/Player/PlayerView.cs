@@ -10,6 +10,7 @@ public class PlayerView : View<GamePlayApplication>
     public Rigidbody2D rb { get; private set; }
     public Animator animator { get; private set; }
     public SpriteRenderer visual { get; private set; }
+    public PlayerCollisionHandler collisionHandler { get; private set; }
 
     [SerializeField]
     private GameObject feetPos;
@@ -26,6 +27,7 @@ public class PlayerView : View<GamePlayApplication>
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         visual = GetComponent<SpriteRenderer>();
+        collisionHandler = GetComponent<PlayerCollisionHandler>();
     }
 
     private void OnDrawGizmos()

@@ -111,9 +111,17 @@ public class PlayerController : Controller<GamePlayApplication>
 
         if (playerModel.isGrounded && Input.GetKeyDown(playerModel.jumpKey))
         {
-            playerModel.isJumping = true;
-            playerModel.ResetJumpTimeCounter();
-            playerView.rb.velocity = Vector2.up * playerModel.jumpForce + new Vector2(playerView.rb.velocity.x, 0);
+            // Jump down a platform
+            if (verticalInputDicretion < 0)
+            {
+                playerView.collisionHandler.DisablePlatform();
+            }
+            else
+            {
+                playerModel.isJumping = true;
+                playerModel.ResetJumpTimeCounter();
+                playerView.rb.velocity = Vector2.up * playerModel.jumpForce + new Vector2(playerView.rb.velocity.x, 0);
+            }
         }
 
         if (((Input.GetKeyDown(playerModel.dashKey)) || (Input.GetMouseButtonDown(1)))

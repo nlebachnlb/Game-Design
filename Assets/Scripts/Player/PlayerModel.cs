@@ -31,6 +31,8 @@ public class PlayerModel : Model<GamePlayApplication>
     public KeyCode rightKey;
     public KeyCode leftKey;
     public KeyCode jumpKey;
+    public KeyCode downKey;
+    public KeyCode upKey;
     public KeyCode dashKey;
 
     [Space]
