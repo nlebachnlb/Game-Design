@@ -179,6 +179,11 @@ public class PlayerController : Controller<GamePlayApplication>
         playerView.transform.position = position;
     }
 
+    public void ResetStat()
+    {
+        playerView.rb.velocity = Vector2.zero; 
+    }
+
     #region Event callback
     public void OnDamaged(BaseHazard hazard)
     {

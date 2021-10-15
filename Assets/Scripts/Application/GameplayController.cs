@@ -23,6 +23,7 @@ public class GameplayController : Controller<GamePlayApplication>
 
     public void RespawnPlayer(Vector2 position)
     {
+        playerController.ResetStat(); 
         playerController.SpawnAt(position);
     }
 }
