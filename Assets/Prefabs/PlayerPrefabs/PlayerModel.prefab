@@ -51,20 +51,22 @@ MonoBehaviour:
   dashTimer: 0
   dashPhase: 0
   dashDirection: {x: 0, y: 0}
-  dashFriction: 0.2
+  dashFriction: 20
   MaxNumberOfDash: 1
   CurrentNumberofDash: 0
   rightKey: 0
   leftKey: 0
   jumpKey: 32
+  downKey: 0
+  upKey: 0
   dashKey: 99
   moveSpeed: 550
   jumpForce: 10
-  dashSpeed: 1000
+  dashSpeed: 1100
   checkRadius: 0.3
   feetPosition: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   jumpTime: 0.25
-  maxDashTime: 0.2
+  maxDashTime: 0.25
