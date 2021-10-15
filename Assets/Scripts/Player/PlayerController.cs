@@ -105,7 +105,9 @@ public class PlayerController : Controller<GamePlayApplication>
 
     private void Update()
     {
-        playerModel.isGrounded = Physics2D.OverlapCircle(playerModel.feetPosition.position, playerModel.checkRadius, playerModel.whatIsGround);
+        playerModel.isGrounded = 
+            Physics2D.OverlapCircle(playerModel.feetPosition.position, playerModel.checkRadius, playerModel.whatIsGround) &&
+            playerView.rb.velocity.y <= 0f;
 
         if (playerModel.isGrounded && Input.GetKeyDown(playerModel.jumpKey))
         {
