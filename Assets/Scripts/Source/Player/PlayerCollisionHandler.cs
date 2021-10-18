@@ -49,47 +49,19 @@ public class PlayerCollisionHandler : Controller<GamePlayApplication>
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("SpawnPoint"))
+        var trigger = collision.gameObject.GetComponent<BaseTrigger>();
+        if (trigger != null)
         {
-            collision.gameObject.GetComponent<SpawnPoint>().OnPlayerEnter(playerController);
-        }
-
-        if (collision.CompareTag("Hazard"))
-        {
-            collision.gameObject.GetComponent<BaseHazard>().OnPlayerEnter(playerController);
-        }
-
-        if (collision.CompareTag("Gate"))
-        {
-            collision.gameObject.GetComponent<SwitchScene>().OnPlayerEnter(playerController);
-        }
-
-        if (collision.CompareTag("CameraTrigger"))
-        {
-            collision.gameObject.GetComponent<CameraTrigger>().OnPlayerEnter(playerController);
+            trigger.OnPlayerEnter(playerController);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("SpawnPoint"))
+        var trigger = collision.gameObject.GetComponent<BaseTrigger>();
+        if (trigger != null)
         {
-            collision.gameObject.GetComponent<SpawnPoint>().OnPlayerExit(playerController);
-        }
-
-        if (collision.CompareTag("Hazard"))
-        {
-            collision.gameObject.GetComponent<BaseHazard>().OnPlayerExit(playerController);
-        }
-
-        if (collision.CompareTag("Gate"))
-        {
-            collision.gameObject.GetComponent<SwitchScene>().OnPlayerExit(playerController);
-        }
-
-        if (collision.CompareTag("CameraTrigger"))
-        {
-            collision.gameObject.GetComponent<CameraTrigger>().OnPlayerExit(playerController);
+            trigger.OnPlayerExit(playerController);
         }
     }
 }
