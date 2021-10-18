@@ -51,11 +51,14 @@ public class PlayerController : Controller<GameplayApplication>
     }
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         PlayerModel = app.model.GetComponentInChildren<PlayerModel>();
         PlayerView = app.view.GetComponentInChildren<PlayerView>();
+    }
 
+    private void Start()
+    {
         var stateBehaviours = PlayerView.Animator.GetBehaviours<StateMachineBehaviourExt>();
         foreach (var state in stateBehaviours)
         {
