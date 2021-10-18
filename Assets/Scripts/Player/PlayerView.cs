@@ -45,12 +45,10 @@ public class PlayerView : View<GamePlayApplication>
         dashMotion.gameObject.SetActive(true);
         dashMotion.gameObject.GetComponent<Animator>().SetTrigger("Dash");
         visual.enabled = false;
-        //dashMotion.flipX = visual.flipX;
         var angle = dashMotion.gameObject.transform.eulerAngles;
         var ang = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         angle.z = ang;
         dashMotion.transform.eulerAngles = angle;
-        //dashFx2.startRotation = ang;
     }
 
     public void StopDash()

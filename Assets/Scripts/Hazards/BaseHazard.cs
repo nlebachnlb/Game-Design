@@ -7,7 +7,6 @@ public class BaseHazard : BaseTrigger
 {
     public override void OnPlayerEnter(PlayerController player)
     {
-
         player.OnDamaged(this);
     }
 }
