@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerView : View<GamePlayApplication>
+public class PlayerView : View<GameplayApplication>
 {
     private PlayerController playerControler;
 
-    public Rigidbody2D rb { get; private set; }
-    public Animator animator { get; private set; }
-    public SpriteRenderer visual { get; private set; }
-    public PlayerCollisionHandler collisionHandler { get; private set; }
+    public Rigidbody2D RB { get; private set; }
+    public Animator Animator { get; private set; }
+    public SpriteRenderer Visual { get; private set; }
+    public PlayerCollisionHandler CollisionHandler { get; private set; }
 
     [SerializeField]
     private GameObject feetPos;
@@ -24,10 +24,10 @@ public class PlayerView : View<GamePlayApplication>
     {
         playerControler = app.controller.GetComponentInChildren<PlayerController>();
 
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        visual = GetComponent<SpriteRenderer>();
-        collisionHandler = GetComponent<PlayerCollisionHandler>();
+        RB = GetComponent<Rigidbody2D>();
+        Animator = GetComponent<Animator>();
+        Visual = GetComponent<SpriteRenderer>();
+        CollisionHandler = GetComponent<PlayerCollisionHandler>();
     }
 
     private void OnDrawGizmos()
@@ -44,7 +44,7 @@ public class PlayerView : View<GamePlayApplication>
         dashFx.Play();
         dashMotion.gameObject.SetActive(true);
         dashMotion.gameObject.GetComponent<Animator>().SetTrigger("Dash");
-        visual.enabled = false;
+        Visual.enabled = false;
         var angle = dashMotion.gameObject.transform.eulerAngles;
         var ang = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         angle.z = ang;
@@ -54,7 +54,7 @@ public class PlayerView : View<GamePlayApplication>
     public void StopDash()
     {
         dashFx.Stop();
-        visual.enabled = true;
+        Visual.enabled = true;
         dashMotion.gameObject.SetActive(false);
     }
 }

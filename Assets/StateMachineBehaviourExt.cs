@@ -11,7 +11,7 @@ public class StateMachineBehaviourExt : StateMachineBehaviour
     public void InitController(PlayerController playerController)
     {
         controller = playerController;
-        model = controller.playerModel;
-        view = controller.playerView;
+        model = controller.PlayerModel;
+        view = controller.PlayerView;
     }
 }

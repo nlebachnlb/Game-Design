@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Framework.AMVC;
 
-public class PlayerCollisionHandler : Controller<GamePlayApplication>
+public class PlayerCollisionHandler : Controller<GameplayApplication>
 {
     public PlayerController playerController;
 

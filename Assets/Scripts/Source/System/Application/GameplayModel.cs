@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameplayModel : Model<GamePlayApplication>
+public class GameplayModel : Model<GameplayApplication>
 {
     public PlayerModel PlayerModel { get; private set; }
     public Vector2 lastSpawnPosition;
