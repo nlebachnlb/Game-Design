@@ -9,7 +9,7 @@ public enum SceneTransition
     FadeThroughBlack = 1
 }
 
-public class GameplayController : Controller<GamePlayApplication>
+public class GameplayController : Controller<GameplayApplication>
 {
     public PlayerController playerController { get; private set; }
 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerView : View<GamePlayApplication>
+public class PlayerView : View<GameplayApplication>
 {
     private PlayerController playerControler;
 

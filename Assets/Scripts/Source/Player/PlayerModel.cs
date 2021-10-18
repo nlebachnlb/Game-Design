@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Framework.AMVC;
 using UnityEngine;
 
-public class PlayerModel : Model<GamePlayApplication>
+public class PlayerModel : Model<GameplayApplication>
 {
     PlayerController playerControler;
 

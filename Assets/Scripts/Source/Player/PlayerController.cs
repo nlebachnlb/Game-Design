@@ -4,12 +4,52 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerController : Controller<GamePlayApplication>
+public class PlayerController : Controller<GameplayApplication>
 {
     public PlayerModel PlayerModel { get; private set; }
     public PlayerView PlayerView { get; private set; }
-    public float horizontalInputDirection { get; private set; }
-    public float verticalInputDicretion { get; private set; }
+    public float HorizontalInputDirection { get; private set; }
+    public float VerticalInputDirection { get; private set; }
+    public void UpdateAnimator()
+    {
+        PlayerView.Animator.SetBool("isOnGround", PlayerModel.isGrounded);
+        PlayerView.Animator.SetBool("isDashing", PlayerModel.IsDashing);
+        PlayerView.Animator.SetBool("isWalking", PlayerModel.isWalking);
+        PlayerView.Animator.SetFloat("yVelocity", PlayerView.RB.velocity.y);
+
+        if (HorizontalInputDirection != 0)
+        {
+            PlayerModel.facing = (int)Mathf.Sign(HorizontalInputDirection);
+            PlayerView.Visual.flipX = PlayerModel.facing < 0;
+        }
+    }
+
+    public void UpdateLoop()
+    {
+        HorizontalInputDirection = Input.GetAxis("Horizontal");
+        VerticalInputDirection = Input.GetAxisRaw("Vertical");
+        PlayerModel.isWalking = HorizontalInputDirection != 0;
+        Move();
+        Jump();
+        Dash();
+    }
+
+    public void SpawnAt(Vector2 position, bool reborn = true)
+    {
+        PlayerView.transform.position = position;
+    }
+
+    public void ResetStat()
+    {
+        PlayerView.RB.velocity = Vector2.zero;
+    }
+
+    #region Event callback
+    public void OnDamaged(BaseHazard hazard)
+    {
+        app.controller.RespawnPlayer(app.model.lastSpawnPosition);
+    }
+    #endregion
 
     private void Start()
     {
@@ -23,10 +63,10 @@ public class PlayerController : Controller<GamePlayApplication>
         }
     }
 
-    public void Move()
+    private void Move()
     {
         if (PlayerModel.IsDashing) return;
-        float moveBy = horizontalInputDirection * PlayerModel.moveSpeed * Time.fixedDeltaTime;
+        float moveBy = HorizontalInputDirection * PlayerModel.moveSpeed * Time.fixedDeltaTime;
         PlayerView.RB.velocity = new Vector2(moveBy, PlayerView.RB.velocity.y);
     }
 
@@ -110,7 +150,7 @@ public class PlayerController : Controller<GamePlayApplication>
         if (PlayerModel.isGrounded && Input.GetKeyDown(PlayerModel.jumpKey))
         {
             // Jump down a platform
-            if (verticalInputDicretion < 0)
+            if (VerticalInputDirection < 0)
             {
                 PlayerView.CollisionHandler.DisablePlatform();
             }
@@ -126,8 +166,8 @@ public class PlayerController : Controller<GamePlayApplication>
             && (PlayerModel.CurrentNumberofDash < PlayerModel.MaxNumberOfDash))
         {
             PlayerModel.dashDirection =
-                horizontalInputDirection != 0 || verticalInputDicretion != 0 ?
-                new Vector2(horizontalInputDirection, verticalInputDicretion) :
+                HorizontalInputDirection != 0 || VerticalInputDirection != 0 ?
+                new Vector2(HorizontalInputDirection, VerticalInputDirection) :
                 Vector2.right * PlayerModel.facing;
 
             PlayerModel.dashPhase = 1;
@@ -151,45 +191,6 @@ public class PlayerController : Controller<GamePlayApplication>
         UpdateLoop();
     }
 
-    public void UpdateAnimator()
-    {
-        PlayerView.Animator.SetBool("isOnGround", PlayerModel.isGrounded);
-        PlayerView.Animator.SetBool("isDashing", PlayerModel.IsDashing);
-        PlayerView.Animator.SetBool("isWalking", PlayerModel.isWalking);
-        PlayerView.Animator.SetFloat("yVelocity", PlayerView.RB.velocity.y);
 
-        if (horizontalInputDirection != 0)
-        {
-            PlayerModel.facing = (int)Mathf.Sign(horizontalInputDirection);
-            PlayerView.Visual.flipX = PlayerModel.facing < 0;
-        }
-    }
-
-    public void UpdateLoop()
-    {
-        horizontalInputDirection = Input.GetAxis("Horizontal");
-        verticalInputDicretion = Input.GetAxisRaw("Vertical");
-        PlayerModel.isWalking = horizontalInputDirection != 0;
-        Move();
-        Jump();
-        Dash();
-    }
-
-    public void SpawnAt(Vector2 position, bool reborn = true)
-    {
-        PlayerView.transform.position = position;
-    }
-
-    public void ResetStat()
-    {
-        PlayerView.RB.velocity = Vector2.zero; 
-    }
-
-    #region Event callback
-    public void OnDamaged(BaseHazard hazard)
-    {
-        app.controller.RespawnPlayer(app.model.lastSpawnPosition);
-    }
-    #endregion
 }
 

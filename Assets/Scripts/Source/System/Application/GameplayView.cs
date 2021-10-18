@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameplayView : View<GamePlayApplication>
+public class GameplayView : View<GameplayApplication>
 {
     // Start is called before the first frame update
     private void Start()
