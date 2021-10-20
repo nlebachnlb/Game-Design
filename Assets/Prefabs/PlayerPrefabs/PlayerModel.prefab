@@ -63,7 +63,7 @@ MonoBehaviour:
   moveSpeed: 550
   jumpForce: 10
   dashSpeed: 1100
-  checkRadius: 0.3
+  checkRadius: 0.2
   feetPosition: {fileID: 0}
   whatIsGround:
     serializedVersion: 2

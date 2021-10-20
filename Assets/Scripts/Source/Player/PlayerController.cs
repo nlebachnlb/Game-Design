@@ -148,8 +148,21 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void Update()
     {
+        PlayerModel.isGrounded = 
+            Physics2D.OverlapCircle(PlayerModel.feetPosition.position, PlayerModel.checkRadius, PlayerModel.whatIsGround) &&
+            PlayerView.RB.velocity.y <= 0f;
 
+        JumpInputCheck();
+        DashInputCheck();
+    }
 
+    private void FixedUpdate()
+    {
+        UpdateLoop();
+    }
+
+    private void JumpInputCheck()
+    {
         if (PlayerModel.isGrounded && Input.GetKeyDown(PlayerModel.jumpKey))
         {
             // Jump down a platform
@@ -164,13 +177,16 @@ public class PlayerController : Controller<GameplayApplication>
                 PlayerView.RB.velocity = Vector2.up * PlayerModel.jumpForce + new Vector2(PlayerView.RB.velocity.x, 0);
             }
         }
+    }
 
+    private void DashInputCheck()
+    {
         if (((Input.GetKeyDown(PlayerModel.dashKey)) || (Input.GetMouseButtonDown(1)))
             && (PlayerModel.CurrentNumberofDash < PlayerModel.MaxNumberOfDash))
         {
             PlayerModel.dashDirection =
                 HorizontalInputDirection != 0 || VerticalInputDirection != 0 ?
-                new Vector2(HorizontalInputDirection, VerticalInputDirection) :
+                new Vector2(Input.GetAxisRaw("Horizontal"), VerticalInputDirection) :
                 Vector2.right * PlayerModel.facing;
 
             PlayerModel.dashPhase = 1;
@@ -179,21 +195,8 @@ public class PlayerController : Controller<GameplayApplication>
             PlayerView.RB.gravityScale = 0f;
 
             PlayerModel.CurrentNumberofDash++;
-            Debug.Log("INFO" + PlayerModel.isGrounded);
-            Debug.Log("[INFO]" + PlayerModel.CurrentNumberofDash);
-
             PlayerView.PlayDash(PlayerModel.dashDirection);
         }
     }
-
-    private void FixedUpdate()
-    {
-        PlayerModel.isGrounded =
-    Physics2D.OverlapCircle(PlayerModel.feetPosition.position, PlayerModel.checkRadius, PlayerModel.whatIsGround) &&
-    PlayerView.RB.velocity.y <= 0f;
-        UpdateLoop();
-    }
-
-
 }
 
