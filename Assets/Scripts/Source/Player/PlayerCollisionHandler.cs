@@ -54,6 +54,12 @@ public class PlayerCollisionHandler : Controller<GameplayApplication>
         {
             trigger.OnPlayerEnter(playerController);
         }
+
+        if (collision.gameObject.CompareTag("Collectible"))
+        {
+            var collectible = collision.gameObject.GetComponent<BaseCollectible>();
+            collectible.OnCollected(playerController);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

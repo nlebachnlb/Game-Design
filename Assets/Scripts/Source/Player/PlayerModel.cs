@@ -56,14 +56,18 @@ public class PlayerModel : Model<GameplayApplication>
 
     public bool IsDashing { get { return dashPhase > 0; } }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerControler = app.controller.GetComponentInChildren<PlayerController>();
-    }
-
     public void ResetJumpTimeCounter()
     {
         this.jumpTimeCounter = this.jumpTime;
+    }
+
+    public void ResetDash()
+    {
+        CurrentNumberofDash = 0;
+    }
+
+    private void Start()
+    {
+        playerControler = app.controller.GetComponentInChildren<PlayerController>();
     }
 }

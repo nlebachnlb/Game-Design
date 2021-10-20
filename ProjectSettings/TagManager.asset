@@ -9,6 +9,7 @@ TagManager:
   - GhostPlatform
   - Gate
   - CameraTrigger
+  - Collectible
   layers:
   - Default
   - TransparentFX
