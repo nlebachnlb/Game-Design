@@ -10,6 +10,9 @@ public class PlayerController : Controller<GameplayApplication>
     public PlayerView PlayerView { get; private set; }
     public float HorizontalInputDirection { get; private set; }
     public float VerticalInputDirection { get; private set; }
+
+    private float speed;
+
     public void UpdateAnimator()
     {
         PlayerView.Animator.SetBool("isOnGround", PlayerModel.isGrounded);
@@ -102,43 +105,52 @@ public class PlayerController : Controller<GameplayApplication>
             {
                 case 1:
                     {
-                        if (PlayerModel.dashTimer > PlayerModel.maxDashTime * 0.1f)
+                        if (speed < PlayerModel.dashSpeed)
                         {
-                            PlayerView.RB.velocity = PlayerModel.dashDirection.normalized * PlayerModel.dashSpeed * Time.fixedDeltaTime;
-                            PlayerModel.dashTimer -= Time.deltaTime;
+                            speed += PlayerModel.dashAcceleration;
                         }
                         else
                         {
-                            // PlayerView.RB.velocity = Vector2.zero;
-                            var vel = PlayerView.RB.velocity;
-                            vel.y *= 0.5f;
-                            vel.x *= 0.5f;
-                            PlayerView.RB.velocity = vel;
-                            PlayerView.RB.gravityScale = 5f;
+                            speed = PlayerModel.dashSpeed;
                             PlayerModel.dashPhase = 2;
-                            PlayerView.StopDash();
                         }
                     }
                     break;
                 case 2:
                     {
+                        if (PlayerModel.dashTimer > PlayerModel.maxDashTime * 0.1f)
+                        {
+                            PlayerModel.dashTimer -= Time.deltaTime;
+                        }
+                        else
+                        {
+                            speed *= 0.5f;
+                            PlayerModel.dashPhase = 3;
+                            PlayerView.StopDash();
+                        }
+                    }
+                    break;
+                case 3:
+                    {
                         var epsilon = PlayerModel.isWalking ? PlayerModel.moveSpeed * 0.8f * Time.fixedDeltaTime : PlayerModel.dashFriction * Time.fixedDeltaTime;
-                        PlayerView.RB.velocity += -PlayerModel.dashDirection.normalized * PlayerModel.dashFriction * Time.fixedDeltaTime;
+                        speed -= PlayerModel.dashFriction;
 
-                        if (PlayerView.RB.velocity.magnitude <= epsilon || PlayerView.RB.velocity.normalized == -PlayerModel.dashDirection.normalized)
+                        if (speed <= epsilon)
                         {
                             PlayerModel.dashPhase = 0;
+                            PlayerView.RB.gravityScale = 5f;
                         }
                     }
                     break;
             }
+
+            PlayerView.RB.velocity = PlayerModel.dashDirection.normalized * speed * Time.fixedDeltaTime;
         }
         else
         {
             if (PlayerModel.isGrounded && PlayerView.RB.velocity.y >= 0)
-                PlayerModel.CurrentNumberofDash = 0;
+                PlayerModel.ResetDash();
         }
-
     }
 
     private void LateUpdate()
@@ -182,17 +194,21 @@ public class PlayerController : Controller<GameplayApplication>
     private void DashInputCheck()
     {
         if (((Input.GetKeyDown(PlayerModel.dashKey)) || (Input.GetMouseButtonDown(1)))
-            && (PlayerModel.CurrentNumberofDash < PlayerModel.MaxNumberOfDash))
+            && (PlayerModel.CurrentNumberofDash < PlayerModel.MaxNumberOfDash) 
+            && (PlayerModel.dashPhase == 0))
         {
+            var rawHorInp = Input.GetAxisRaw("Horizontal");
+
             PlayerModel.dashDirection =
-                HorizontalInputDirection != 0 || VerticalInputDirection != 0 ?
-                new Vector2(Input.GetAxisRaw("Horizontal"), VerticalInputDirection) :
+                rawHorInp != 0 || VerticalInputDirection != 0 ?
+                new Vector2(rawHorInp, VerticalInputDirection) :
                 Vector2.right * PlayerModel.facing;
 
             PlayerModel.dashPhase = 1;
             PlayerModel.dashTimer = PlayerModel.maxDashTime;
 
             PlayerView.RB.gravityScale = 0f;
+            speed = 0f;
 
             PlayerModel.CurrentNumberofDash++;
             PlayerView.PlayDash(PlayerModel.dashDirection);

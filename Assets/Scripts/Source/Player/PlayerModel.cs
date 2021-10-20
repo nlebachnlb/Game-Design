@@ -22,6 +22,7 @@ public class PlayerModel : Model<GameplayApplication>
     public int dashPhase;
     public Vector2 dashDirection;
     public float dashFriction;
+    public float dashAcceleration;
 
     public int MaxNumberOfDash;
     public int CurrentNumberofDash;
@@ -69,5 +70,6 @@ public class PlayerModel : Model<GameplayApplication>
     private void Start()
     {
         playerControler = app.controller.GetComponentInChildren<PlayerController>();
+        facing = 1;
     }
 }

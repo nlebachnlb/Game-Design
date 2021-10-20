@@ -627,7 +627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 64284225}
   - component: {fileID: 64284226}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,7 +768,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 71719900}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -873,7 +873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 87570212}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: background (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1387,7 +1387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 168539296}
   - component: {fileID: 168539297}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1715,7 +1715,7 @@ GameObject:
   - component: {fileID: 233081179}
   - component: {fileID: 233081178}
   - component: {fileID: 233081177}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Abyss (2)
   m_TagString: Hazard
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -1905,7 +1905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 295393451}
   - component: {fileID: 295393452}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2037,7 +2037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 344179528}
   - component: {fileID: 344179529}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2316,7 +2316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 420003063}
   - component: {fileID: 420003064}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2398,7 +2398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 430974444}
   - component: {fileID: 430974445}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2480,7 +2480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 474649802}
   - component: {fileID: 474649803}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2528,7 +2528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 508212139}
   - component: {fileID: 508212140}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3073,7 +3073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 644736880}
   - component: {fileID: 644736881}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3468,7 +3468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 709421132}
   - component: {fileID: 709421133}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3714,7 +3714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 752696152}
   - component: {fileID: 752696153}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3886,7 +3886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868347910}
   - component: {fileID: 868347911}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4383,7 +4383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 958861049}
   - component: {fileID: 958861050}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4465,7 +4465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1001506928}
   - component: {fileID: 1001506929}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4546,13 +4546,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1010415376}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1010415376
 Transform:
   m_ObjectHideFlags: 0
@@ -4607,7 +4607,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1042229743}
   - component: {fileID: 1042229744}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4694,7 +4694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1050154127}
   - component: {fileID: 1050154128}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4776,7 +4776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1068151196}
   - component: {fileID: 1068151197}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4858,7 +4858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1094372023}
   - component: {fileID: 1094372024}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5062,7 +5062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1119172577}
   - component: {fileID: 1119172578}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5144,7 +5144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1122274067}
   - component: {fileID: 1122274068}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5226,7 +5226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1126992312}
   - component: {fileID: 1126992313}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5315,7 +5315,7 @@ GameObject:
   - component: {fileID: 1134574150}
   - component: {fileID: 1134574149}
   - component: {fileID: 1134574148}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Abyss
   m_TagString: Hazard
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -5666,7 +5666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1164149361}
   - component: {fileID: 1164149362}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6259,7 +6259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1262140531}
   - component: {fileID: 1262140532}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6733,7 +6733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1395999509}
   - component: {fileID: 1395999510}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7187,7 +7187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1489634295}
   - component: {fileID: 1489634296}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7858,7 +7858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1546511931}
   - component: {fileID: 1546511932}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8939,7 +8939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1670270791}
   - component: {fileID: 1670270792}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9287,7 +9287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1773166927}
   - component: {fileID: 1773166928}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9625,7 +9625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1900947024}
   - component: {fileID: 1900947025}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9707,7 +9707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911126009}
   - component: {fileID: 1911126010}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9789,7 +9789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1936095596}
   - component: {fileID: 1936095597}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9871,7 +9871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1957768662}
   - component: {fileID: 1957768663}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10075,7 +10075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1978950369}
   - component: {fileID: 1978950370}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10157,7 +10157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2023001299}
   - component: {fileID: 2023001300}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: back (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11209,7 +11209,7 @@ GameObject:
   - component: {fileID: 2141721629}
   - component: {fileID: 2141721628}
   - component: {fileID: 2141721627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Abyss (1)
   m_TagString: Hazard
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -11639,7 +11639,7 @@ GameObject:
   - component: {fileID: 6814251633006250825}
   - component: {fileID: 6814251633006250826}
   - component: {fileID: 6814251633006250827}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Exit
   m_TagString: Gate
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -11788,9 +11788,25 @@ PrefabInstance:
       value: PlayerModel
       objectReference: {fileID: 0}
     - target: {fileID: 8070418255812922630, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
+      propertyPath: dashSpeed
+      value: 1400
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070418255812922630, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
+      propertyPath: maxDashTime
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070418255812922630, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
+      propertyPath: dashFriction
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070418255812922630, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
       propertyPath: feetPosition
       value: 
       objectReference: {fileID: 1210967075}
+    - target: {fileID: 8070418255812922630, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
+      propertyPath: dashAcceleration
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8070418255812922631, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
       propertyPath: m_RootOrder
       value: 0
