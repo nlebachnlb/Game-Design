@@ -2,6 +2,7 @@ using Framework.AMVC;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerView : View<GameplayApplication>
 {
@@ -15,7 +16,7 @@ public class PlayerView : View<GameplayApplication>
     [SerializeField]
     private GameObject feetPos;
     [SerializeField]
-    private ParticleSystem dashFx, dashFx2;
+    private ParticleSystem dashFx, tailLeft;
     [SerializeField]
     private SpriteRenderer dashMotion;
 
@@ -28,6 +29,12 @@ public class PlayerView : View<GameplayApplication>
         Animator = GetComponent<Animator>();
         Visual = GetComponent<SpriteRenderer>();
         CollisionHandler = GetComponent<PlayerCollisionHandler>();
+    }
+
+    private void Start()
+    {
+        StopTails();
+        PlayTail();
     }
 
     private void OnDrawGizmos()
@@ -49,6 +56,9 @@ public class PlayerView : View<GameplayApplication>
         var ang = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         angle.z = ang;
         dashMotion.transform.eulerAngles = angle;
+
+        //tailLeft.transform.DORotate(angle, 0.5f).SetEase(Ease.InOutCirc);
+        tailLeft.transform.eulerAngles = angle;
     }
 
     public void StopDash()
@@ -56,5 +66,20 @@ public class PlayerView : View<GameplayApplication>
         dashFx.Stop();
         Visual.enabled = true;
         dashMotion.gameObject.SetActive(false);
+    }
+
+    public void PlayTail()
+    {
+        tailLeft.Play();
+    }
+
+    public void UpdateIdleTail()
+    {
+        tailLeft.transform.eulerAngles = Vector3.forward * (playerControler.PlayerModel.facing == 1 ? 0f : 180f);
+    }
+    
+    public void StopTails()
+    {
+        tailLeft.Stop();
     }
 }

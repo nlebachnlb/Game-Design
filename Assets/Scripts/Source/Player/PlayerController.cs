@@ -71,9 +71,20 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void Move()
     {
-        if (PlayerModel.IsDashing) return;
+        if (PlayerModel.IsDashing)
+        {
+            //PlayerView.StopTails();
+            return;
+        }
+
         float moveBy = HorizontalInputDirection * PlayerModel.moveSpeed * Time.fixedDeltaTime;
         PlayerView.RB.velocity = new Vector2(moveBy, PlayerView.RB.velocity.y);
+        PlayerView.UpdateIdleTail();
+
+        //if (HorizontalInputDirection == 0f)
+        //    PlayerView.PlayTail(PlayerModel.facing);
+        //else
+        //    PlayerView.StopTails();
     }
 
     private void Jump()
