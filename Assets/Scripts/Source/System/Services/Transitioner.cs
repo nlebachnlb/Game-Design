@@ -12,20 +12,17 @@ public class Transitioner : Service
 
     public void SwitchScene(string targetSceneName, float duration)
     {
-        StartCoroutine(PlayTransition(duration, () =>
-        {
-            SceneManager.LoadScene(targetSceneName);
-        }, Color.black));
+        StartCoroutine(PlayTransition(targetSceneName, duration, Color.white));
     }
 
-    private IEnumerator PlayTransition(float duration, System.Action onComplete, Color color)
+    private IEnumerator PlayTransition(string targetSceneName, float duration, Color color)
     {
         var startColor = color;
         startColor.a = 0f;
-        mask.color = startColor;
+        //mask.color = startColor;
         mask.CrossFadeAlpha(1f, duration * 0.5f, true);
         yield return new WaitForSeconds(duration * 0.5f);
-        onComplete?.Invoke();
+        yield return SceneManager.LoadSceneAsync(targetSceneName);
         yield return new WaitForSeconds(duration * 0.5f);
         mask.CrossFadeAlpha(0f, duration * 0.5f, true);
     }

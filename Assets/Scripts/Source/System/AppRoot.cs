@@ -16,7 +16,7 @@ public class AppRoot : ServiceLocator
         yield return null;
 
         //SceneManager.LoadScene(firstSceneName);
-        GetService<Transitioner>().SwitchScene(firstSceneName, 1f);
+        GetService<Transitioner>().SwitchScene(firstSceneName, 2f);
     }
 
     [SerializeField]

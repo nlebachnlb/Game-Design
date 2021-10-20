@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameplayView : View<GameplayApplication>
 {
     public CameraShake CameraShakeFX { get; private set; }
+    public CameraFollow CameraFollow { get; private set; }
 
     [SerializeField]
     private GameObject cameraRig;
@@ -13,6 +14,7 @@ public class GameplayView : View<GameplayApplication>
     private void Awake()
     {
         CameraShakeFX = cameraRig.GetComponent<CameraShake>();
+        CameraFollow = cameraRig.GetComponent<CameraFollow>();
     }
 
     // Update is called once per frame
