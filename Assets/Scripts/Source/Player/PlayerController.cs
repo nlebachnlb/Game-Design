@@ -113,6 +113,9 @@ public class PlayerController : Controller<GameplayApplication>
                         {
                             speed = PlayerModel.dashSpeed;
                             PlayerModel.dashPhase = 2;
+                            var dir = PlayerModel.dashDirection.normalized;
+                            var shakeDir = new Vector2(dir.y, dir.x);
+                            app.view.CameraShakeFX.Shake(shakeDir, 0.3f);
                         }
                     }
                     break;

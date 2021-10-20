@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class GameplayView : View<GameplayApplication>
 {
-    // Start is called before the first frame update
-    private void Start()
+    public CameraShake CameraShakeFX { get; private set; }
+
+    [SerializeField]
+    private GameObject cameraRig;
+
+    private void Awake()
     {
-        
+        CameraShakeFX = cameraRig.GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
