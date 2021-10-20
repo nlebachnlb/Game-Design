@@ -7,9 +7,12 @@ public class GameplayView : View<GameplayApplication>
 {
     public CameraShake CameraShakeFX { get; private set; }
     public CameraFollow CameraFollow { get; private set; }
+    public GameObject ExplosionFX { get { return explosionFx; } }
 
     [SerializeField]
     private GameObject cameraRig;
+    [SerializeField]
+    private GameObject explosionFx;
 
     private void Awake()
     {

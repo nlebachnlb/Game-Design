@@ -23,6 +23,7 @@ public class PlayerModel : Model<GameplayApplication>
     public Vector2 dashDirection;
     public float dashFriction;
     public float dashAcceleration;
+    public bool isDead;
 
     public int MaxNumberOfDash;
     public int CurrentNumberofDash;
@@ -64,7 +65,15 @@ public class PlayerModel : Model<GameplayApplication>
 
     public void ResetDash()
     {
+        dashPhase = 0;
         CurrentNumberofDash = 0;
+    }
+
+    public void ResetStats()
+    {
+        ResetDash();
+        isDead = false;
+        dashTimer = maxDashTime;
     }
 
     private void Start()

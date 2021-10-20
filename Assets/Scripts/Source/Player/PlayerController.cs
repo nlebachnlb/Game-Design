@@ -44,12 +44,16 @@ public class PlayerController : Controller<GameplayApplication>
 
     public void ResetStat()
     {
+        PlayerModel.ResetStats();
         PlayerView.RB.velocity = Vector2.zero;
+        PlayerView.StopDash();
     }
 
     #region Event callback
     public void OnDamaged(BaseHazard hazard)
     {
+        if (PlayerModel.isDead) return;
+        PlayerModel.isDead = true;
         app.controller.RespawnPlayer(app.model.lastSpawnPosition);
     }
     #endregion

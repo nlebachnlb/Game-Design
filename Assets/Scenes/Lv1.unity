@@ -3668,6 +3668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraRig: {fileID: 364197199}
+  explosionFx: {fileID: 7619437077117506821, guid: 9f93923763575674cb80c97eb94a8ee8, type: 3}
 --- !u!4 &931987424
 Transform:
   m_ObjectHideFlags: 0
