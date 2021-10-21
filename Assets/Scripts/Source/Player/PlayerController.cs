@@ -60,6 +60,7 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void Awake()
     {
+        Debug.Log(app); 
         PlayerModel = app.model.GetComponentInChildren<PlayerModel>();
         PlayerView = app.view.GetComponentInChildren<PlayerView>();
     }
@@ -181,6 +182,11 @@ public class PlayerController : Controller<GameplayApplication>
         PlayerModel.isGrounded = 
             Physics2D.OverlapCircle(PlayerModel.feetPosition.position, PlayerModel.checkRadius, PlayerModel.whatIsGround) &&
             PlayerView.RB.velocity.y <= 0f;
+
+        if(PlayerModel.isGrounded)
+        {
+            PlayerView.CollisionHandler.VanishPlatformCollision(); 
+        }
 
         JumpInputCheck();
         DashInputCheck();

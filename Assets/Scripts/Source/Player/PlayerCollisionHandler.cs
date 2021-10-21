@@ -8,13 +8,23 @@ public class PlayerCollisionHandler : Controller<GameplayApplication>
     public PlayerController playerController;
 
     private GameObject currentGhostPlatform;
+    private GameObject currentVanishPlatform; 
     private Collider2D playerCollider;
 
     public void DisablePlatform()
-    {
+    { 
         if (currentGhostPlatform != null)
         {
             StartCoroutine(DisableCollision());
+        }
+    }
+
+    public void VanishPlatformCollision()
+    {
+        if (currentVanishPlatform != null)
+        {
+            if(playerCollider.transform.position.y >= currentVanishPlatform.transform.position.y)
+            StartCoroutine(VanishCoroutine());
         }
     }
 
@@ -29,6 +39,12 @@ public class PlayerCollisionHandler : Controller<GameplayApplication>
         {
             currentGhostPlatform = collision.gameObject;
         }
+
+        if (collision.gameObject.CompareTag("VanishPlatform"))
+        {
+            currentVanishPlatform = collision.gameObject;
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -36,6 +52,11 @@ public class PlayerCollisionHandler : Controller<GameplayApplication>
         if (collision.gameObject.CompareTag("GhostPlatform"))
         {
             currentGhostPlatform = null;
+        }
+
+        if (collision.gameObject.CompareTag("VanishPlatform"))
+        {
+            currentVanishPlatform = null; 
         }
     }
 
@@ -45,6 +66,21 @@ public class PlayerCollisionHandler : Controller<GameplayApplication>
         Physics2D.IgnoreCollision(playerCollider, platformCollider, true);
         yield return new WaitForSeconds(0.25f);
         Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
+    }
+
+    private IEnumerator VanishCoroutine()
+    {
+        Collider2D platformCollider = currentVanishPlatform.GetComponent<Collider2D>();
+        Vanish_platform script = currentVanishPlatform.GetComponent<Vanish_platform>(); 
+        SpriteRenderer platformRenderer = currentVanishPlatform.GetComponent<SpriteRenderer>(); 
+        Debug.Log("start"); 
+        yield return new WaitForSeconds(script.waitTime); 
+        Physics2D.IgnoreCollision(playerCollider, platformCollider, true);
+        platformRenderer.color = new Color(0, 0, 0, 0); 
+        yield return new WaitForSeconds(script.recoverTime);
+        Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
+        platformRenderer.color = new Color(0, 0, 255, 255);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
