@@ -1522,7 +1522,7 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -6231,7 +6231,7 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -14345,7 +14345,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 25bd086592405bc4b85fb8280fe53759, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20786,7 +20786,7 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -25495,7 +25495,7 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -28840,6 +28840,7 @@ MonoBehaviour:
   dashFx: {fileID: 4936426435485410057}
   tailLeft: {fileID: 9053263455634082367}
   dashMotion: {fileID: 486647646636314105}
+  tailsFx: {fileID: 3341031174217598691}
 --- !u!95 &1128903358989904815
 Animator:
   serializedVersion: 3
@@ -30617,7 +30618,7 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -34092,7 +34093,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.14705884, b: 0.14705884, a: 1}
+      maxColor: {r: 1, g: 0.14705884, b: 0.14705884, a: 0.48235294}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
@@ -38633,8 +38634,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9183491570056506065}
   - component: {fileID: 9053263455634082367}
+  - component: {fileID: 3341031174217598691}
   m_Layer: 0
-  m_Name: TailsToLeft
+  m_Name: Tails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38648,7 +38650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9180168509251434071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: -0.23, z: 0}
+  m_LocalPosition: {x: 0, y: -0.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9183466857741829195}
@@ -43374,6 +43376,24 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &3341031174217598691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9180168509251434071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848e4c88f5b43c642912356f1a5a275f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tails:
+  - {fileID: 7033447174454785209}
+  - {fileID: 3707097233018105224}
+  - {fileID: 4609397449397361602}
+  - {fileID: 4698033539298899246}
+  - {fileID: 8871633288633108942}
 --- !u!1 &9180368426823422671
 GameObject:
   m_ObjectHideFlags: 0

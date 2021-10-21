@@ -85,10 +85,10 @@ public class PlayerController : Controller<GameplayApplication>
         PlayerView.RB.velocity = new Vector2(moveBy, PlayerView.RB.velocity.y);
         PlayerView.UpdateIdleTail();
 
-        //if (HorizontalInputDirection == 0f)
-        //    PlayerView.PlayTail(PlayerModel.facing);
-        //else
-        //    PlayerView.StopTails();
+        if (HorizontalInputDirection != 0f)
+            PlayerView.TailsFX.SetTailsLength(4, 4);
+        else
+            PlayerView.TailsFX.SetTailsLength();
     }
 
     private void Jump()

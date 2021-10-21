@@ -10,7 +10,7 @@ public class DashStamina : BaseCollectible
 
     public override void OnCollected(PlayerController player)
     {
-        player.PlayerModel.ResetDash();
+        player.PlayerModel.CurrentNumberofDash = 0;
         StartCoroutine(Recover());
     }
 

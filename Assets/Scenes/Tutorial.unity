@@ -4067,6 +4067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraRig: {fileID: 1558224415}
+  explosionFx: {fileID: 7619437077117506821, guid: 9f93923763575674cb80c97eb94a8ee8, type: 3}
 --- !u!4 &931987424
 Transform:
   m_ObjectHideFlags: 0
@@ -11605,7 +11606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf3abca51dc6d941865dfc5186dab1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: Level-1
+  targetSceneName: Lv1
 --- !u!1001 &8038788528125764666
 PrefabInstance:
   m_ObjectHideFlags: 0
