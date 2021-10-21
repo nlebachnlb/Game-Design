@@ -31,11 +31,12 @@ public class GameplayController : Controller<GameplayApplication>
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(0.1f);
         Time.timeScale = 1f;
+        var transitioner = AppRoot.Instance.GetService<Transitioner>();
+        transitioner.Glow(1f);
         Instantiate(app.view.ExplosionFX, playerController.PlayerView.transform.position, Quaternion.identity);
         playerController.PlayerView.gameObject.SetActive(false);
         app.view.CameraShakeFX.Shake(new Vector2(1f, 1f), 1f);
-        yield return new WaitForSecondsRealtime(0.5f);
-        var transitioner = AppRoot.Instance.GetService<Transitioner>();
+        yield return new WaitForSecondsRealtime(1f);
         var camPos = app.view.CameraFollow.transform.position;
         camPos.x = position.x;
         camPos.y = position.y;

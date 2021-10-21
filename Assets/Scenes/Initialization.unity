@@ -178,17 +178,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: AppRoot
       objectReference: {fileID: 0}
-    - target: {fileID: 1925138909075760695, guid: ccb3f0af8101f2443a47bfb23e4b68d2, type: 3}
-      propertyPath: firstSceneName
-      value: Tutorial
-      objectReference: {fileID: 0}
-    - target: {fileID: 6146501708312384377, guid: ccb3f0af8101f2443a47bfb23e4b68d2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6146501708312384377, guid: ccb3f0af8101f2443a47bfb23e4b68d2, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccb3f0af8101f2443a47bfb23e4b68d2, type: 3}

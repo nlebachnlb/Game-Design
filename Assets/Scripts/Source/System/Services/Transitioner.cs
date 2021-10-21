@@ -8,7 +8,13 @@ using UnityEngine.UI;
 public class Transitioner : Service
 {
     [SerializeField]
-    private Image mask;
+    private Image mask, glowMask;
+
+    public void Glow(float duration)
+    {
+        glowMask.color = Color.red;
+        glowMask.CrossFadeAlpha(0f, duration, true);
+    }
 
     public void SwitchScene(string targetSceneName, float duration)
     {
