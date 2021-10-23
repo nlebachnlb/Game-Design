@@ -32,7 +32,6 @@ public class GameplayController : Controller<GameplayApplication>
         yield return new WaitForSecondsRealtime(0.1f);
         Time.timeScale = 1f;
         var transitioner = AppRoot.Instance.GetService<Transitioner>();
-        transitioner.Glow(1f);
         Instantiate(app.view.ExplosionFX, playerController.PlayerView.transform.position, Quaternion.identity);
         playerController.PlayerView.gameObject.SetActive(false);
         app.view.CameraShakeFX.Shake(new Vector2(1f, 1f), 1f);
