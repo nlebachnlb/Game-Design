@@ -28,7 +28,7 @@ public class GameplayController : Controller<GameplayApplication>
 
     private IEnumerator RespawnProcess(Vector2 position)
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 0.1f;
         yield return new WaitForSecondsRealtime(0.1f);
         Time.timeScale = 1f;
         var transitioner = AppRoot.Instance.GetService<Transitioner>();
