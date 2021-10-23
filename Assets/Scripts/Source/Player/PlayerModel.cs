@@ -58,6 +58,10 @@ public class PlayerModel : Model<GameplayApplication>
 
     public bool IsDashing { get { return dashPhase > 0; } }
 
+    [Space]
+    [Header("Skills")]
+    public bool dashSkill;
+
     public void ResetJumpTimeCounter()
     {
         this.jumpTimeCounter = this.jumpTime;

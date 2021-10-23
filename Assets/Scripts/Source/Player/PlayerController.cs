@@ -49,6 +49,11 @@ public class PlayerController : Controller<GameplayApplication>
         PlayerView.StopDash();
     }
 
+    public void ActivateDashSkill(bool active)
+    {
+        PlayerModel.dashSkill = active;
+    }
+
     #region Event callback
     public void OnDamaged(BaseHazard hazard)
     {
@@ -217,6 +222,9 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void DashInputCheck()
     {
+        if (!PlayerModel.dashSkill)
+            return;
+
         if (((Input.GetKeyDown(PlayerModel.dashKey)) || (Input.GetMouseButtonDown(1)))
             && (PlayerModel.CurrentNumberofDash < PlayerModel.MaxNumberOfDash) 
             && (PlayerModel.dashPhase == 0))
