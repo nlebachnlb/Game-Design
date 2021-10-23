@@ -23,8 +23,7 @@ public class PlayerCollisionHandler : Controller<GameplayApplication>
     {
         if (currentVanishPlatform != null)
         {
-            if(playerCollider.transform.position.y >= currentVanishPlatform.transform.position.y)
-            StartCoroutine(VanishCoroutine());
+            
         }
     }
 
@@ -43,6 +42,8 @@ public class PlayerCollisionHandler : Controller<GameplayApplication>
         if (collision.gameObject.CompareTag("VanishPlatform"))
         {
             currentVanishPlatform = collision.gameObject;
+            if (playerCollider.transform.position.y >= currentVanishPlatform.transform.position.y)
+                StartCoroutine(VanishCoroutine());
         }
 
     }
@@ -78,6 +79,7 @@ public class PlayerCollisionHandler : Controller<GameplayApplication>
         Physics2D.IgnoreCollision(playerCollider, platformCollider, true);
         platformRenderer.color = new Color(0, 0, 0, 0); 
         yield return new WaitForSeconds(script.recoverTime);
+        Debug.Log("Waht the fac"); 
         Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
         platformRenderer.color = new Color(0, 0, 255, 255);
 
