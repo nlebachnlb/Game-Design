@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Lv1.unity
+    path: Assets/Scenes/SampleLevelDesign/Cuong.unity
     guid: 75a0e9fa1712dda448056134882ee395
+  - enabled: 1
+    path: Assets/Scenes/SampleLevelDesign/Cuong.unity
+    guid: 44bdda626b4f29c4ca96e595ce8ab2cc
   m_configObjects: {}
