@@ -183,11 +183,6 @@ public class PlayerController : Controller<GameplayApplication>
             Physics2D.OverlapCircle(PlayerModel.feetPosition.position, PlayerModel.checkRadius, PlayerModel.whatIsGround) &&
             PlayerView.RB.velocity.y <= 0f;
 
-        if(PlayerModel.isGrounded)
-        {
-            PlayerView.CollisionHandler.VanishPlatformCollision(); 
-        }
-
         JumpInputCheck();
         DashInputCheck();
     }
