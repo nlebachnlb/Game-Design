@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1925138909075760695, guid: ccb3f0af8101f2443a47bfb23e4b68d2, type: 3}
       propertyPath: firstSceneName
-      value: Cuong
+      value: C1Tutorial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccb3f0af8101f2443a47bfb23e4b68d2, type: 3}

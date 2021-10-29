@@ -79,16 +79,17 @@ public class CameraFollow : MonoBehaviour
                 {
                     Vector2 desiredPosition = (Vector2)target.position + offset;
                     var currBoundary = boundaries[currentBoundaryIndex];
+                    smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.fixedDeltaTime);
+
                     Vector3 finalPosition =
                         new Vector3
                         (
-                            Mathf.Clamp(desiredPosition.x, currBoundary.min.x, currBoundary.max.x),
-                            Mathf.Clamp(desiredPosition.y, currBoundary.min.y, currBoundary.max.y),
+                            Mathf.Clamp(smoothedPosition.x, currBoundary.min.x, currBoundary.max.x),
+                            Mathf.Clamp(smoothedPosition.y, currBoundary.min.y, currBoundary.max.y),
                             -cameraDistance
                         );
 
-                    smoothedPosition = Vector3.Lerp(transform.position, finalPosition, smoothSpeed * Time.fixedDeltaTime);
-                    transform.position = smoothedPosition;
+                    transform.position = finalPosition;
                 }
                 break;
         }
