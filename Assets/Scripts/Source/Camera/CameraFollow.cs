@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using Framework.AMVC;
 
 [System.Serializable]
 public struct Boundary
@@ -9,7 +10,7 @@ public struct Boundary
     public Vector2 min, max;
 }
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : Controller<GameplayApplication>
 {
     public enum CameraState
     {
@@ -19,7 +20,7 @@ public class CameraFollow : MonoBehaviour
 
     public Transform target;
     public float smoothSpeed;
-    public float transitionDurationSeconds;
+    public float transitionDurationSeconds = 1f;
     public Vector2 offset;
 
     [Range(0, 100)]
@@ -59,9 +60,13 @@ public class CameraFollow : MonoBehaviour
             );
 
         transform.DOMove(finalPosition, transitionDurationSeconds).SetEase(Ease.InOutSine);
+        //app.controller.playerController.PlayerView.RB.simulated = false;
+        //app.controller.playerController.enabled = false;
 
         yield return new WaitForSecondsRealtime(transitionDurationSeconds);
 
+        //app.controller.playerController.enabled = true;
+        //app.controller.playerController.PlayerView.RB.simulated = true;
         state = CameraState.Normal;
     }
 
