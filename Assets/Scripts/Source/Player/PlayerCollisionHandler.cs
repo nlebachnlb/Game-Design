@@ -7,20 +7,53 @@ public class PlayerCollisionHandler : Controller<GameplayApplication>
 {
     public PlayerController playerController;
 
+    [SerializeField]
+    public Vector2 dashHitBoxOffset, dashHitBoxSize;
+    [SerializeField]
+    public Vector2 idleHitBoxOffset, idleHitBoxSize;
+
     private GameObject currentGhostPlatform;
-    private Collider2D playerCollider;
+    private BoxCollider2D playerCollider;
 
     public void DisablePlatform()
-    { 
+    {
         if (currentGhostPlatform != null)
         {
             StartCoroutine(DisableCollision());
         }
     }
 
+    public void SwitchState(PlayerHitBoxState destState)
+    {
+        Vector2 targetOffset = Vector2.zero;
+        Vector2 targetSize = Vector2.zero;
+
+        switch (destState)
+        {
+            case PlayerHitBoxState.Idle:
+                {
+                    targetOffset = idleHitBoxOffset;
+                    targetSize = idleHitBoxSize;
+                }
+                break;
+            case PlayerHitBoxState.Dash:
+                {
+                    targetOffset = dashHitBoxOffset;
+                    targetSize = dashHitBoxSize;
+                }
+                break;
+        }
+
+        if (targetSize != Vector2.zero)
+        {
+            playerCollider.offset = targetOffset;
+            playerCollider.size = targetSize;
+        }
+    }
+
     private void Awake()
     {
-        playerCollider = GetComponent<Collider2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

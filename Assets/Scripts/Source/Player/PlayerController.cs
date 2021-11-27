@@ -173,7 +173,10 @@ public class PlayerController : Controller<GameplayApplication>
         else
         {
             if (PlayerModel.isGrounded && PlayerView.RB.velocity.y >= 0)
+            {
+                PlayerView.CollisionHandler.SwitchState(PlayerHitBoxState.Idle);
                 PlayerModel.ResetDash();
+            }
         }
     }
 
@@ -249,6 +252,9 @@ public class PlayerController : Controller<GameplayApplication>
 
             PlayerModel.CurrentNumberofDash++;
             PlayerView.PlayDash(PlayerModel.dashDirection);
+
+            if (PlayerModel.dashDirection.x != 0)
+                PlayerView.CollisionHandler.SwitchState(PlayerHitBoxState.Dash);
         }
     }
 }

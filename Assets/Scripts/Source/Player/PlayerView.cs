@@ -110,7 +110,7 @@ public class PlayerView : View<GameplayApplication>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere((Vector2)feetPos.transform.position, 0.2f);
+        Gizmos.DrawWireSphere((Vector2)feetPos.transform.position, 0.5f);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere((Vector2)this.transform.position, 3f);
