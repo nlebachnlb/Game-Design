@@ -124,7 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recoverTime: 3
-  waitTime: 1.5
+  waitTime: 0.5
+  isWaiting: 0
 --- !u!251 &4124777633789116151
 PlatformEffector2D:
   m_ObjectHideFlags: 0
