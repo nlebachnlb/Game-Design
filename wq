@@ -1,0 +1,80 @@
+[33m328b004[m[33m ([m[1;36mHEAD -> [m[1;32mcuong-hub[m[33m, [m[1;31morigin/dev[m[33m, [m[1;31morigin/cuong-chapter1-leveldesign[m[33m, [m[1;32mdev[m[33m, [m[1;32mcuong-chapter1-leveldesign[m[33m)[m Update vanishing platform prefab
+[33mbdc9f5c[m Implement C1L2
+[33m27d4bee[m Update working files
+[33mb41c6f4[m Merge branch 'dev' into cuong-chapter1-leveldesign
+[33mfd36081[m Fix vanish platform bug
+[33m19f382f[m Fix bug: Camera respawn
+[33mda14b82[m[33m ([m[1;31morigin/bach-chapter1-leveldesign[m[33m)[m Merge levels
+[33m36638c7[m Approve level 1-1, 1-2
+[33m17e1986[m Tutorial GUI
+[33ma287d30[m Complete scence 3 chapter 1
+[33m64db0eb[m Tutorial adjustment
+[33m8bfd6e7[m Merge branch 'dev' into cuong-chapter1-leveldesign
+[33m1e4d23d[m Done first scence
+[33m417214f[m New tutorial + Camera trigger
+[33mf5e6ee6[m Add EditorUserSettings
+[33m15c9a5f[m Adding basic level design
+[33m56e32d2[m[33m ([m[1;32mvanishing_platform[m[33m)[m Merge branch 'dev' of https://github.com/nlebachnlb/Game-Design into vanishing_platform
+[33m55a96bd[m Update on vanish logic
+[33mc525744[m New explosion fx
+[33m61b4a33[m Tails visual + dash visual enhancement
+[33md5e0c5f[m[33m ([m[1;31morigin/dead-and-respawn-flow[m[33m)[m Modify explosion fx
+[33m083c8b2[m Dead and respawn with transition and polish
+[33mc60f584[m Player's tails visual
+[33m882f190[m[33m ([m[1;31morigin/dash-enhancement[m[33m)[m Improve dash animation
+[33mec9b052[m Transition
+[33m5e0749b[m Camera shake fx on dash
+[33m8ae782f[m Better dash + Fix bug
+[33ma44ec62[m Dash stamina
+[33m6a37259[m Snap dash in 8 directions
+[33m3e300c6[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/code-refactor-1[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix some bugs after refactoring
+[33mefdd80c[m[33m ([m[1;32mcode-refactor-1[m[33m)[m Merge branch 'code-refactor-1' of https://github.com/nlebachnlb/Game-Design into code-refactor-1
+[33m1a00c33[m Restructure object hierarchy
+[33m3e7e40f[m Merge branch 'code-refactor-1' of https://github.com/nlebachnlb/Game-Design into code-refactor-1
+[33m1b0fe8c[m Restructure object in Tutorial scene
+[33m53c29a6[m Public and private reorder
+[33m62fc73c[m Merge branch 'code-refactor-1' of https://github.com/nlebachnlb/Game-Design into code-refactor-1
+[33m2bad118[m Change property to Pascal case
+[33m39727ef[m Reorganize folder structure
+[33m4b406be[m Refactor triggers' detector
+[33m26f7316[m Something minor
+[33m4cdc415[m Add camera trigger (lock positions) and adjust level 1
+[33m726d9b6[m Adjust tutorial scene
+[33ma666891[m[33m ([m[1;32mcuongscence[m[33m)[m Merge branch 'dev' into cuongscence
+[33m9c233fc[m[33m ([m[1;31morigin/cuongscence[m[33m)[m First scene
+[33m9fdd145[m Adjust demo scene
+[33mf1f46df[m[33m ([m[1;31morigin/oneway-platform[m[33m, [m[1;32mScence2[m[33m)[m Handle jumping down the oneway-platform
+[33m3636be3[m Handle jumping on oneway-platform
+[33m3f0b760[m[33m ([m[1;31morigin/camera-boundaries[m[33m)[m Camera boundaries (no boundary transition) :
+[33m2e65dd9[m[33m ([m[1;31morigin/dead-and-spawn[m[33m)[m Respawn at spawn points on hazard collision
+[33m77e0cf4[m Spawn point
+[33m82030e1[m Fix minor bug
+[33m7f8da41[m[33m ([m[1;31morigin/dash-animation[m[33m)[m Dash animation
+[33m1f06a16[m[33m ([m[1;31morigin/camera[m[33m, [m[1;32mhazard[m[33m)[m Add post processing
+[33mbb5c62e[m Movement
+[33m7539525[m[33m ([m[1;31morigin/Dash[m[33m)[m Add more transition animations
+[33m9f44201[m Merge branch 'jump-anim' into Dash
+[33m6f96067[m Movement enhancement with dash
+[33macc03bd[m Merge branch 'dev' into Dash
+[33mb24fd79[m Fix glitching following camera
+[33m989676e[m Merge branch 'dev' into Dash
+[33m89dcfca[m Movement enhancement
+[33m5dc1e41[m[33m ([m[1;32mcamera[m[33m)[m Camera smoothing and follow the player
+[33m4901c50[m[33m ([m[1;32mDash[m[33m)[m Update dash stat
+[33m53eac86[m Try to fix Dash logical bugs
+[33med23e9d[m update Dash key bind
+[33m828fa5d[m[33m ([m[1;31morigin/jump-anim[m[33m)[m Idle-Jump animation
+[33mf36bbf0[m Dash one time mid air
+[33md2398f4[m commit Dash uncommited files
+[33mbc43d31[m[33m ([m[1;32mmain[m[33m)[m Merge branch 'dev'
+[33m6dc68a4[m Merge branch 'dev' of https://github.com/nlebachnlb/Game-Design into dev
+[33m94fd774[m Delete Logs folder
+[33mf806e21[m Update gitignore
+[33mea62319[m Fix deltatime
+[33m77604f9[m Merge branch 'dev'
+[33mc547162[m[33m ([m[1;31morigin/config[m[33m)[m Config gitignore + Level Design space
+[33mf507d6d[m Merge branch 'dev'
+[33mcf9df6c[m Dummy commit
+[33m73849e0[m Commit some minor changes
+[33m8702148[m Project initialization
+[33m5676245[m Initial commit
