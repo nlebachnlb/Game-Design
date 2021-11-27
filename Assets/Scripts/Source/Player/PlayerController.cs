@@ -113,7 +113,7 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void Jump()
     {
-        if (Input.GetKey(PlayerModel.jumpKey) && PlayerModel.isJumping == true)
+        if (GetJumpKey() && PlayerModel.isJumping == true)
         {
             if (PlayerModel.jumpTimeCounter > 0)
             {
@@ -223,9 +223,19 @@ public class PlayerController : Controller<GameplayApplication>
         UpdateLoop();
     }
 
+    private bool GetJumpKeyDown()
+    {
+        return Input.GetKeyDown(PlayerModel.jumpKey) || Input.GetKeyDown(PlayerModel.jumpKeyAlt);
+    }
+
+    private bool GetJumpKey()
+    {
+        return Input.GetKey(PlayerModel.jumpKey) || Input.GetKey(PlayerModel.jumpKeyAlt);
+    }
+
     private void JumpInputCheck()
     {
-        if (PlayerModel.coyoteTimeCounter > 0f && Input.GetKeyDown(PlayerModel.jumpKey))
+        if (PlayerModel.coyoteTimeCounter > 0f && GetJumpKeyDown())
         {
             PlayerModel.coyoteTimeCounter = 0f;
             // Jump down a platform

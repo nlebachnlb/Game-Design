@@ -36,6 +36,7 @@ public class PlayerModel : Model<GameplayApplication>
     public KeyCode rightKey;
     public KeyCode leftKey;
     public KeyCode jumpKey;
+    public KeyCode jumpKeyAlt = KeyCode.X;
     public KeyCode downKey;
     public KeyCode upKey;
     public KeyCode dashKey;
