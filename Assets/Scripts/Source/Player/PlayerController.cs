@@ -188,6 +188,15 @@ public class PlayerController : Controller<GameplayApplication>
             Physics2D.OverlapCircle(PlayerModel.feetPosition.position, PlayerModel.checkRadius, PlayerModel.whatIsGround) &&
             PlayerView.RB.velocity.y <= 0f;
 
+        if (PlayerModel.isGrounded)
+        {
+            PlayerModel.coyoteTimeCounter = PlayerModel.coyoteTime;
+        }
+        else
+        {
+            PlayerModel.coyoteTimeCounter -= Time.deltaTime;
+        }
+
         JumpInputCheck();
         DashInputCheck();
     }
@@ -199,8 +208,9 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void JumpInputCheck()
     {
-        if (PlayerModel.isGrounded && Input.GetKeyDown(PlayerModel.jumpKey))
+        if (PlayerModel.coyoteTimeCounter > 0f && Input.GetKeyDown(PlayerModel.jumpKey))
         {
+            PlayerModel.coyoteTimeCounter = 0f;
             // Jump down a platform
             if (VerticalInputDirection < 0)
             {

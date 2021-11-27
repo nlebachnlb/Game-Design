@@ -25,6 +25,9 @@ public class PlayerModel : Model<GameplayApplication>
     public float dashAcceleration;
     public bool isDead;
 
+    public float coyoteTime { get; private set; } = 0.13f;
+    public float coyoteTimeCounter;
+
     public int MaxNumberOfDash;
     public int CurrentNumberofDash;
 
