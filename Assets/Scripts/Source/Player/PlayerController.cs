@@ -231,7 +231,7 @@ public class PlayerController : Controller<GameplayApplication>
             // Jump down a platform
             if (VerticalInputDirection < 0)
             {
-                PlayerView.CollisionHandler.DisablePlatform();
+                //PlayerView.CollisionHandler.DisablePlatform();
             }
             else
             {

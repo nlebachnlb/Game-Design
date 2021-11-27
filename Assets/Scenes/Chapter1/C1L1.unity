@@ -12739,7 +12739,7 @@ PrefabInstance:
       objectReference: {fileID: 1210967075}
     - target: {fileID: 8070418255812922630, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
       propertyPath: MaxNumberOfDash
-      value: 444
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8070418255812922631, guid: f71b54a44756e2e4baeb691d5adad25e, type: 3}
       propertyPath: m_RootOrder
