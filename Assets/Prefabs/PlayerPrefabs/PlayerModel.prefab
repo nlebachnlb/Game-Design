@@ -71,6 +71,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  fallSpeed: 20
   jumpTime: 0.28
   maxDashTime: 0.15
   dashSkill: 1

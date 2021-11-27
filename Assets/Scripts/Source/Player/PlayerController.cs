@@ -35,6 +35,20 @@ public class PlayerController : Controller<GameplayApplication>
         Move();
         Jump();
         Dash();
+        LimitFallSpeed();
+    }
+
+    public void LimitFallSpeed()
+    {
+        if (PlayerModel.IsDashing)
+            return;
+
+        var vel = PlayerView.RB.velocity;
+        if (vel.y < -Mathf.Abs(PlayerModel.fallSpeed))
+        {
+            vel.y = -Mathf.Abs(PlayerModel.fallSpeed);
+        }
+        PlayerView.RB.velocity = vel;
     }
 
     public void SpawnAt(Vector2 position, bool reborn = true)

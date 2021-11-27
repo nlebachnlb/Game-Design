@@ -51,6 +51,7 @@ public class PlayerModel : Model<GameplayApplication>
     public float checkRadius;
     public Transform feetPosition;
     public LayerMask whatIsGround;
+    public float fallSpeed = 20f;
 
     [Space]
     public float jumpTime;
