@@ -11,6 +11,9 @@ public class PlayerController : Controller<GameplayApplication>
     public float HorizontalInputDirection { get; private set; }
     public float VerticalInputDirection { get; private set; }
 
+    private float dashBufferCounter = 0f;
+    private int dashBufferInputs = 0;
+
     private float speed;
 
     public void UpdateAnimator()
@@ -134,6 +137,8 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void Dash()
     {
+        DashBufferProcess();
+
         if (PlayerModel.IsDashing)
         {
             switch (PlayerModel.dashPhase)
@@ -263,14 +268,10 @@ public class PlayerController : Controller<GameplayApplication>
         }
     }
 
-    private void DashInputCheck()
+    private void DashBufferProcess()
     {
-        if (!PlayerModel.dashSkill)
-            return;
-
-        if (((Input.GetKeyDown(PlayerModel.dashKey)) || (Input.GetMouseButtonDown(1)))
-            && (PlayerModel.CurrentNumberofDash < PlayerModel.MaxNumberOfDash) 
-            && (PlayerModel.dashPhase == 0))
+        if (dashBufferCounter > 0f && (PlayerModel.CurrentNumberofDash < PlayerModel.MaxNumberOfDash)
+            && (PlayerModel.dashPhase == 0) && dashBufferInputs > 0)
         {
             var rawHorInp = Input.GetAxisRaw("Horizontal");
 
@@ -290,6 +291,34 @@ public class PlayerController : Controller<GameplayApplication>
 
             if (PlayerModel.dashDirection.x != 0)
                 PlayerView.CollisionHandler.SwitchState(PlayerHitBoxState.Dash);
+
+            dashBufferInputs--;
+        }
+        else
+        {
+            if (dashBufferCounter >= 0f)
+            {
+                dashBufferCounter -= Time.deltaTime;
+                if (dashBufferCounter < 0f)
+                {
+                    dashBufferInputs = 0;
+                    dashBufferCounter = 0;
+                }
+            }
+        }
+    }
+
+    private void DashInputCheck()
+    {
+        if (!PlayerModel.dashSkill)
+            return;
+
+        if ((Input.GetKeyDown(PlayerModel.dashKey)) || (Input.GetMouseButtonDown(1)) 
+            && dashBufferInputs < PlayerModel.dashBufferSize
+            && (PlayerModel.dashPhase == 3 || PlayerModel.dashPhase == 0))
+        {
+            dashBufferCounter = PlayerModel.dashBufferTime;
+            dashBufferInputs++;
         }
     }
 }
