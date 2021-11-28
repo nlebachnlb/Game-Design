@@ -54,6 +54,7 @@ MonoBehaviour:
   dashFriction: 150
   dashAcceleration: 200
   isDead: 0
+  coyoteTimeCounter: 0
   MaxNumberOfDash: 1
   CurrentNumberofDash: 0
   rightKey: 0
@@ -62,14 +63,15 @@ MonoBehaviour:
   downKey: 0
   upKey: 0
   dashKey: 99
-  moveSpeed: 550
+  moveSpeed: 450
   jumpForce: 10
   dashSpeed: 1400
-  checkRadius: 0.2
+  checkRadius: 0.3
   feetPosition: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  jumpTime: 0.25
+  fallSpeed: 20
+  jumpTime: 0.28
   maxDashTime: 0.15
   dashSkill: 1

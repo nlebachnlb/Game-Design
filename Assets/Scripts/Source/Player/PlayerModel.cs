@@ -25,6 +25,9 @@ public class PlayerModel : Model<GameplayApplication>
     public float dashAcceleration;
     public bool isDead;
 
+    public float coyoteTime { get; private set; } = 0.13f;
+    public float coyoteTimeCounter;
+
     public int MaxNumberOfDash;
     public int CurrentNumberofDash;
 
@@ -33,6 +36,7 @@ public class PlayerModel : Model<GameplayApplication>
     public KeyCode rightKey;
     public KeyCode leftKey;
     public KeyCode jumpKey;
+    public KeyCode jumpKeyAlt = KeyCode.X;
     public KeyCode downKey;
     public KeyCode upKey;
     public KeyCode dashKey;
@@ -48,6 +52,7 @@ public class PlayerModel : Model<GameplayApplication>
     public float checkRadius;
     public Transform feetPosition;
     public LayerMask whatIsGround;
+    public float fallSpeed = 20f;
 
     [Space]
     public float jumpTime;

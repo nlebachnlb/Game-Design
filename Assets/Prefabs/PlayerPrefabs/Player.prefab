@@ -28874,6 +28874,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
+  dashHitBoxOffset: {x: 0, y: -0.53}
+  dashHitBoxSize: {x: 0.7, y: 0.8}
+  idleHitBoxOffset: {x: 0, y: -0.1}
+  idleHitBoxSize: {x: 0.7, y: 1.86}
 --- !u!61 &7364962979277822439
 BoxCollider2D:
   m_ObjectHideFlags: 0

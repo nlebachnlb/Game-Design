@@ -35,6 +35,20 @@ public class PlayerController : Controller<GameplayApplication>
         Move();
         Jump();
         Dash();
+        LimitFallSpeed();
+    }
+
+    public void LimitFallSpeed()
+    {
+        if (PlayerModel.IsDashing)
+            return;
+
+        var vel = PlayerView.RB.velocity;
+        if (vel.y < -Mathf.Abs(PlayerModel.fallSpeed))
+        {
+            vel.y = -Mathf.Abs(PlayerModel.fallSpeed);
+        }
+        PlayerView.RB.velocity = vel;
     }
 
     public void SpawnAt(Vector2 position, bool reborn = true)
@@ -99,7 +113,7 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void Jump()
     {
-        if (Input.GetKey(PlayerModel.jumpKey) && PlayerModel.isJumping == true)
+        if (GetJumpKey() && PlayerModel.isJumping == true)
         {
             if (PlayerModel.jumpTimeCounter > 0)
             {
@@ -173,7 +187,10 @@ public class PlayerController : Controller<GameplayApplication>
         else
         {
             if (PlayerModel.isGrounded && PlayerView.RB.velocity.y >= 0)
+            {
+                PlayerView.CollisionHandler.SwitchState(PlayerHitBoxState.Idle);
                 PlayerModel.ResetDash();
+            }
         }
     }
 
@@ -188,6 +205,15 @@ public class PlayerController : Controller<GameplayApplication>
             Physics2D.OverlapCircle(PlayerModel.feetPosition.position, PlayerModel.checkRadius, PlayerModel.whatIsGround) &&
             PlayerView.RB.velocity.y <= 0f;
 
+        if (PlayerModel.isGrounded)
+        {
+            PlayerModel.coyoteTimeCounter = PlayerModel.coyoteTime;
+        }
+        else
+        {
+            PlayerModel.coyoteTimeCounter -= Time.deltaTime;
+        }
+
         JumpInputCheck();
         DashInputCheck();
     }
@@ -197,14 +223,25 @@ public class PlayerController : Controller<GameplayApplication>
         UpdateLoop();
     }
 
+    private bool GetJumpKeyDown()
+    {
+        return Input.GetKeyDown(PlayerModel.jumpKey) || Input.GetKeyDown(PlayerModel.jumpKeyAlt);
+    }
+
+    private bool GetJumpKey()
+    {
+        return Input.GetKey(PlayerModel.jumpKey) || Input.GetKey(PlayerModel.jumpKeyAlt);
+    }
+
     private void JumpInputCheck()
     {
-        if (PlayerModel.isGrounded && Input.GetKeyDown(PlayerModel.jumpKey))
+        if (PlayerModel.coyoteTimeCounter > 0f && GetJumpKeyDown())
         {
+            PlayerModel.coyoteTimeCounter = 0f;
             // Jump down a platform
             if (VerticalInputDirection < 0)
             {
-                PlayerView.CollisionHandler.DisablePlatform();
+                //PlayerView.CollisionHandler.DisablePlatform();
             }
             else
             {
@@ -239,6 +276,9 @@ public class PlayerController : Controller<GameplayApplication>
 
             PlayerModel.CurrentNumberofDash++;
             PlayerView.PlayDash(PlayerModel.dashDirection);
+
+            if (PlayerModel.dashDirection.x != 0)
+                PlayerView.CollisionHandler.SwitchState(PlayerHitBoxState.Dash);
         }
     }
 }

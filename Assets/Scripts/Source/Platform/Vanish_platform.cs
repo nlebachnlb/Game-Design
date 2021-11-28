@@ -37,13 +37,15 @@ public class Vanish_platform : MonoBehaviour
 
         yield return new WaitForSeconds(this.waitTime);
 
-        Physics2D.IgnoreCollision(this.collider, playerCollider, true);
+        //Physics2D.IgnoreCollision(this.collider, playerCollider, true);
+        collider.enabled = false;
         renderer.color = new Color(0, 0, 0, 0);
         this.isWaiting = true; 
 
         yield return new WaitForSeconds(this.recoverTime);
 
-        Physics2D.IgnoreCollision(this.collider, playerCollider, false);
+        //Physics2D.IgnoreCollision(this.collider, playerCollider, false);
+        collider.enabled = true;
         renderer.color = new Color(0, 0, 255, 255);
         this.isWaiting = false; 
     }
