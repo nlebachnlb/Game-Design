@@ -126,7 +126,7 @@ public class PlayerController : Controller<GameplayApplication>
             }
         }
 
-        if (Input.GetKeyUp(PlayerModel.jumpKey))
+        if (GetJumpKeyUp())
         {
             PlayerModel.isJumping = false;
         }
@@ -225,17 +225,28 @@ public class PlayerController : Controller<GameplayApplication>
 
     private bool GetJumpKeyDown()
     {
-        return Input.GetKeyDown(PlayerModel.jumpKey) || Input.GetKeyDown(PlayerModel.jumpKeyAlt);
+        return
+            Input.GetKeyDown(PlayerModel.jumpKey) ||
+            Input.GetKeyDown(PlayerModel.jumpKeyAlt);
+    }
+
+    private bool GetJumpKeyUp()
+    {
+        return
+            Input.GetKeyUp(PlayerModel.jumpKey) ||
+            Input.GetKeyUp(PlayerModel.jumpKeyAlt);
     }
 
     private bool GetJumpKey()
     {
-        return Input.GetKey(PlayerModel.jumpKey) || Input.GetKey(PlayerModel.jumpKeyAlt);
+        return
+            Input.GetKey(PlayerModel.jumpKey) ||
+            Input.GetKey(PlayerModel.jumpKeyAlt);
     }
 
     private void JumpInputCheck()
     {
-        if (PlayerModel.coyoteTimeCounter > 0f && GetJumpKeyDown())
+        if (PlayerModel.coyoteTimeCounter > 0f && GetJumpKeyDown() && PlayerModel.isJumping == false)
         {
             PlayerModel.coyoteTimeCounter = 0f;
             // Jump down a platform
