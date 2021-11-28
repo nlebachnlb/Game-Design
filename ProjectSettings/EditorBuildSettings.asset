@@ -17,7 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleLevelDesign/Cuong.unity
-    guid: 44bdda626b4f29c4ca96e595ce8ab2cc
+    path: Assets/Scenes/SampleLevelDesign/CuongNewHub.unity
+    guid: f2b2ae1aadf9e9540b75e55c926bff87
   m_configObjects: {}
