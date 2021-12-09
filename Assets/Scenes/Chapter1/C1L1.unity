@@ -6534,16 +6534,28 @@ PrefabInstance:
       value: CameraRig
       objectReference: {fileID: 0}
     - target: {fileID: 311618137058018847, guid: f87471dc31823d94ba918f9bb1e5eed8, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.122641504
-      objectReference: {fileID: 0}
-    - target: {fileID: 311618137058018847, guid: f87471dc31823d94ba918f9bb1e5eed8, type: 3}
-      propertyPath: m_BackGroundColor.g
+      propertyPath: m_AllowMSAA
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 311618137058018847, guid: f87471dc31823d94ba918f9bb1e5eed8, type: 3}
+      propertyPath: m_FOVAxisMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311618137058018847, guid: f87471dc31823d94ba918f9bb1e5eed8, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.12156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 311618137058018847, guid: f87471dc31823d94ba918f9bb1e5eed8, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.031541497
+      objectReference: {fileID: 0}
+    - target: {fileID: 311618137058018847, guid: f87471dc31823d94ba918f9bb1e5eed8, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.043942653
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311618137058018847, guid: f87471dc31823d94ba918f9bb1e5eed8, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 193
       objectReference: {fileID: 0}
     - target: {fileID: 311618137058018849, guid: f87471dc31823d94ba918f9bb1e5eed8, type: 3}
       propertyPath: m_ShowCustomSorter
