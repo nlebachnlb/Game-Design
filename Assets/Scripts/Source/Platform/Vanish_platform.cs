@@ -28,6 +28,12 @@ public class Vanish_platform : MonoBehaviour
         this.renderer = GetComponent<SpriteRenderer>(); 
     }
 
+    private void Start()
+    {
+        var shape = sandFx.shape;
+        shape.scale = transform.localScale;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !isWaiting)
