@@ -28,6 +28,9 @@ public class PlayerModel : Model<GameplayApplication>
     public float coyoteTime { get; private set; } = 0.13f;
     public float coyoteTimeCounter;
 
+    public float dashBufferTime { get; private set; } = 0.13f;
+    public int dashBufferSize { get; private set; } = 1;
+
     public int MaxNumberOfDash;
     public int CurrentNumberofDash;
 
