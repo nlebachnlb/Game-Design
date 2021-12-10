@@ -78,3 +78,6 @@ TagManager:
   - name: ArtForeground
     uniqueID: 2162635835
     locked: 0
+  - name: Layout
+    uniqueID: 2801940289
+    locked: 0
