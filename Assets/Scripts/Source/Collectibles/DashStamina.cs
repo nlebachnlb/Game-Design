@@ -8,9 +8,15 @@ public class DashStamina : BaseCollectible
 
     private Collider2D col;
 
+    [SerializeField]
+    private ParticleSystem normal, burst, recover;
+
     public override void OnCollected(PlayerController player)
     {
         player.PlayerModel.CurrentNumberofDash = 0;
+        normal.Stop();
+        burst.Play();
+        recover.Play();
         StartCoroutine(Recover());
     }
 
@@ -30,5 +36,8 @@ public class DashStamina : BaseCollectible
         col.enabled = true;
         // Temporary code
         GetComponent<SpriteRenderer>().color = Color.white;
+
+        normal.Play();
+        recover.Stop();
     }
 }
