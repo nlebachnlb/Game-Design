@@ -10,14 +10,15 @@ public class Rune : BaseCollectible
 
     public GameObject position;
 
-    public float smoothSpeed;
-
     public override void OnCollected(PlayerController player)
     {
         this.isCollected = true;
         col.enabled = false;
-        this.transform.position = position.transform.position; 
-        //GetComponent<SpriteRenderer>().enabled = false;  
+        this.transform.position = position.transform.position;
+        visual.gameObject.transform.localPosition = Vector2.zero;
+        visual.enabled = false;
+        light.SetActive(false);
+        particle.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -27,6 +28,12 @@ public class Rune : BaseCollectible
     private void Awake()
     {
         this.isCollected = false; 
-        col = GetComponent<Collider2D>(); 
+        col = GetComponent<Collider2D>();
+        visual = GetComponentInChildren<FloatAnimation>();
     }
+
+    private FloatAnimation visual;
+
+    [SerializeField]
+    private GameObject light, particle;
 }
