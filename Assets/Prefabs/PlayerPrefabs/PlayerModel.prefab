@@ -48,6 +48,13 @@ MonoBehaviour:
   jumpTimeCounter: 0
   isJumping: 0
   isWalking: 0
+  isTouchingFront: 0
+  wallSlideColRadius: 0.3
+  wallSliding: 0
+  wallSlideSpeed: 4
+  wallJumpForce: {x: 7, y: 10}
+  wallJumpTime: 0.2
+  isWallJumping: 0
   dashTimer: 0
   dashPhase: 0
   dashDirection: {x: 0, y: 0}
@@ -60,6 +67,7 @@ MonoBehaviour:
   rightKey: 0
   leftKey: 0
   jumpKey: 32
+  jumpKeyAlt: 120
   downKey: 0
   upKey: 0
   dashKey: 99

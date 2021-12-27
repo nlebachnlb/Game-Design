@@ -82,7 +82,7 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void Awake()
     {
-        Debug.Log(app); 
+        Debug.Log(app);
         PlayerModel = app.model.GetComponentInChildren<PlayerModel>();
         PlayerView = app.view.GetComponentInChildren<PlayerView>();
     }
@@ -98,7 +98,7 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void Move()
     {
-        if (PlayerModel.IsDashing)
+        if (PlayerModel.IsDashing || PlayerModel.isWallJumping)
         {
             //PlayerView.StopTails();
             return;
@@ -133,6 +133,54 @@ public class PlayerController : Controller<GameplayApplication>
         {
             PlayerModel.isJumping = false;
         }
+    }
+
+    private void WallSlide()
+    {
+        if (PlayerModel.facing == 1)
+            PlayerModel.isTouchingFront = Physics2D.OverlapCircle(PlayerView.RightCheck.position, PlayerModel.wallSlideColRadius, PlayerModel.whatIsGround);
+        else if (PlayerModel.facing == -1)
+            PlayerModel.isTouchingFront = Physics2D.OverlapCircle(PlayerView.LeftCheck.position, PlayerModel.wallSlideColRadius, PlayerModel.whatIsGround);
+        else
+            PlayerModel.isTouchingFront = false;
+
+        if (PlayerModel.isTouchingFront && PlayerModel.isGrounded == false && HorizontalInputDirection != 0)
+        {
+            PlayerModel.wallSliding = true;
+        }
+        else
+        {
+            PlayerModel.wallSliding = false;
+        }
+
+        if (PlayerModel.wallSliding)
+        {
+            PlayerView.RB.velocity = new Vector2(
+                PlayerView.RB.velocity.x,
+                Mathf.Clamp(PlayerView.RB.velocity.y, -PlayerModel.wallSlideSpeed, float.MaxValue)
+                );
+        }
+    }
+
+    private void WallJump()
+    {
+        if (GetJumpKeyDown() && PlayerModel.wallSliding == true)
+        {
+            PlayerModel.isWallJumping = true;
+            StopCoroutine(StopWallJumping());
+            StartCoroutine(StopWallJumping());
+        }
+
+        if (PlayerModel.isWallJumping)
+        {
+            PlayerView.RB.velocity = new Vector2(PlayerModel.wallJumpForce.x * -HorizontalInputDirection, PlayerModel.wallJumpForce.y);
+        }
+    }
+
+    private IEnumerator StopWallJumping()
+    {
+        yield return new WaitForSeconds(PlayerModel.wallJumpTime);
+        PlayerModel.isWallJumping = false;
     }
 
     private void Dash()
@@ -221,6 +269,8 @@ public class PlayerController : Controller<GameplayApplication>
 
         JumpInputCheck();
         DashInputCheck();
+        WallSlide();
+        WallJump();
     }
 
     private void FixedUpdate()
@@ -251,6 +301,9 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void JumpInputCheck()
     {
+        if (PlayerModel.wallSliding)
+            return;
+
         if (PlayerModel.coyoteTimeCounter > 0f && GetJumpKeyDown() && PlayerModel.isJumping == false)
         {
             PlayerModel.coyoteTimeCounter = 0f;

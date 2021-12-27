@@ -17,6 +17,13 @@ public class PlayerModel : Model<GameplayApplication>
     //[HideInInspector]
     public bool isJumping;
     public bool isWalking;
+    public bool isTouchingFront;
+    public float wallSlideColRadius;
+    public bool wallSliding;
+    public float wallSlideSpeed;
+    public Vector2 wallJumpForce;
+    public float wallJumpTime;
+    public bool isWallJumping;
 
     public float dashTimer;
     public int dashPhase;

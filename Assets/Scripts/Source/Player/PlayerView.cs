@@ -13,6 +13,8 @@ public class PlayerView : View<GameplayApplication>
     public SpriteRenderer Visual { get; private set; }
     public PlayerCollisionHandler CollisionHandler { get; private set; }
     public PlayerTailsFX TailsFX { get { return tailsFx; } }
+    public Transform LeftCheck { get { return leftCheck; } }
+    public Transform RightCheck { get { return rightCheck; } }
 
     [SerializeField]
     private GameObject feetPos;
@@ -22,6 +24,8 @@ public class PlayerView : View<GameplayApplication>
     private SpriteRenderer dashMotion;
     [SerializeField]
     private PlayerTailsFX tailsFx;
+    [SerializeField]
+    private Transform leftCheck, rightCheck;
 
     public void PlayDash(Vector2 direction)
     {
@@ -111,6 +115,10 @@ public class PlayerView : View<GameplayApplication>
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere((Vector2)feetPos.transform.position, 0.5f);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere((Vector2)rightCheck.position, 0.3f);
+        Gizmos.DrawWireSphere((Vector2)leftCheck.position, 0.3f);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere((Vector2)this.transform.position, 3f);
