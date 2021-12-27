@@ -13,6 +13,8 @@ public class PlayerController : Controller<GameplayApplication>
 
     private float dashBufferCounter = 0f;
     private int dashBufferInputs = 0;
+    private float wallJumpBuffer = 0f;
+    private int wallSide = 0;
 
     private float speed;
 
@@ -43,7 +45,7 @@ public class PlayerController : Controller<GameplayApplication>
 
     public void LimitFallSpeed()
     {
-        if (PlayerModel.IsDashing)
+        if (PlayerModel.IsDashing || PlayerModel.wallSliding)
             return;
 
         var vel = PlayerView.RB.velocity;
@@ -138,17 +140,37 @@ public class PlayerController : Controller<GameplayApplication>
     private void WallSlide()
     {
         if (PlayerModel.facing == 1)
+        {
             PlayerModel.isTouchingFront = Physics2D.OverlapCircle(PlayerView.RightCheck.position, PlayerModel.wallSlideColRadius, PlayerModel.whatIsGround);
+            if (PlayerModel.isTouchingFront)
+            {
+                wallSide = 1;
+            }
+        }
         else if (PlayerModel.facing == -1)
+        {
             PlayerModel.isTouchingFront = Physics2D.OverlapCircle(PlayerView.LeftCheck.position, PlayerModel.wallSlideColRadius, PlayerModel.whatIsGround);
+            if (PlayerModel.isTouchingFront)
+            {
+                wallSide = -1;
+            }
+        }
         else
+        {
             PlayerModel.isTouchingFront = false;
+            wallSide = 0;
+        }
+
+        if (wallJumpBuffer > 0f)
+        {
+            wallJumpBuffer -= Time.deltaTime;
+        }
 
         if (PlayerModel.isTouchingFront && PlayerModel.isGrounded == false && HorizontalInputDirection != 0)
         {
             PlayerModel.wallSliding = true;
         }
-        else
+        else if (wallJumpBuffer <= 0f)
         {
             PlayerModel.wallSliding = false;
         }
@@ -169,11 +191,12 @@ public class PlayerController : Controller<GameplayApplication>
             PlayerModel.isWallJumping = true;
             StopCoroutine(StopWallJumping());
             StartCoroutine(StopWallJumping());
+            wallJumpBuffer = PlayerModel.wallCoyoteTime;
         }
 
         if (PlayerModel.isWallJumping)
         {
-            PlayerView.RB.velocity = new Vector2(PlayerModel.wallJumpForce.x * -HorizontalInputDirection, PlayerModel.wallJumpForce.y);
+            PlayerView.RB.velocity = new Vector2(PlayerModel.wallJumpForce.x * -wallSide, PlayerModel.wallJumpForce.y);
         }
     }
 

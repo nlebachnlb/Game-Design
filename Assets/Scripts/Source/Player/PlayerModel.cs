@@ -24,6 +24,7 @@ public class PlayerModel : Model<GameplayApplication>
     public Vector2 wallJumpForce;
     public float wallJumpTime;
     public bool isWallJumping;
+    public float wallCoyoteTime;
 
     public float dashTimer;
     public int dashPhase;
