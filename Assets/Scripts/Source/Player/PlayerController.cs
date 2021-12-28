@@ -24,6 +24,7 @@ public class PlayerController : Controller<GameplayApplication>
         PlayerView.Animator.SetBool("isWallSliding", PlayerModel.wallSliding);
         PlayerView.Animator.SetBool("isDashing", PlayerModel.IsDashing);
         PlayerView.Animator.SetBool("isWalking", PlayerModel.isWalking);
+        PlayerView.Animator.SetBool("isWallJumping", PlayerModel.isWallJumping);
         PlayerView.Animator.SetFloat("yVelocity", PlayerView.RB.velocity.y);
 
         if (HorizontalInputDirection != 0)
