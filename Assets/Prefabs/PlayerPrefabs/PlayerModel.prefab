@@ -52,8 +52,8 @@ MonoBehaviour:
   wallSlideColRadius: 0.3
   wallSliding: 0
   wallSlideSpeed: 6
-  wallJumpForce: {x: 12, y: 12}
-  wallJumpTime: 0.15
+  wallJumpForce: {x: 7, y: 12}
+  wallJumpTime: 0.2
   isWallJumping: 0
   wallCoyoteTime: 0
   dashTimer: 0
