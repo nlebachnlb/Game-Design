@@ -13,6 +13,7 @@ public class PlayerModel : Model<GameplayApplication>
     public int facing = 1;
 
     [HideInInspector]
+    public float stepDuration = 0.2f;
     public float jumpTimeCounter;
     //[HideInInspector]
     public bool isJumping;

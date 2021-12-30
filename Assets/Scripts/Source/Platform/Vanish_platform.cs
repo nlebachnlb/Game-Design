@@ -50,6 +50,7 @@ public class Vanish_platform : MonoBehaviour
     private IEnumerator Vanish()
     {
         //visual.transform.DOShakePosition(this.waitTime, 0.3f);
+        AppRoot.Instance.GetService<SfxController>().Play("sfx-dust");
         sandFx.Play();
 
         yield return new WaitForSeconds(this.waitTime);

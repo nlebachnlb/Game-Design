@@ -17,6 +17,8 @@ public class PlayerController : Controller<GameplayApplication>
     private int wallSide = 0;
 
     private float speed;
+    private float stepTimer = 0f;
+    private int curStep = 0;
 
     public void UpdateAnimator()
     {
@@ -113,7 +115,19 @@ public class PlayerController : Controller<GameplayApplication>
         PlayerView.UpdateIdleTail();
 
         if (HorizontalInputDirection != 0f)
+        {
+            if (PlayerModel.isGrounded)
+                stepTimer += Time.deltaTime;
+
+            if (stepTimer > PlayerModel.stepDuration)
+            {
+                stepTimer = 0;
+                PlayerView.PlayFootstep(curStep + 1);
+                curStep = (curStep + 1) % 2;
+            }
+
             PlayerView.TailsFX.SetTailsLength(4, 4);
+        }
         else
             PlayerView.TailsFX.SetTailsLength();
     }

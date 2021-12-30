@@ -27,6 +27,9 @@ public class PlayerView : View<GameplayApplication>
     [SerializeField]
     private Transform leftCheck, rightCheck;
 
+    private AudioClip[] footstep;
+    private SfxController sfx;
+
     public void PlayDash(Vector2 direction)
     {
         dashFx.Play();
@@ -95,6 +98,11 @@ public class PlayerView : View<GameplayApplication>
         tailLeft.Stop();
     }
 
+    public void PlayFootstep(int index)
+    {
+        sfx.Play("sfx-footstep-" + index);
+    }
+
     private void Awake()
     {
         playerControler = app.controller.GetComponentInChildren<PlayerController>();
@@ -103,6 +111,14 @@ public class PlayerView : View<GameplayApplication>
         Animator = GetComponent<Animator>();
         Visual = GetComponent<SpriteRenderer>();
         CollisionHandler = GetComponent<PlayerCollisionHandler>();
+
+        footstep = new AudioClip[2];
+
+        var audioMgr = AppRoot.Instance.GetService<AudioManager>();
+        footstep[0] = audioMgr.GetSfx("sfx-footstep-1");
+        footstep[1] = audioMgr.GetSfx("sfx-footstep-2");
+
+        sfx = AppRoot.Instance.GetService<SfxController>();
     }
 
     private void Start()

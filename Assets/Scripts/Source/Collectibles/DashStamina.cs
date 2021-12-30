@@ -18,6 +18,7 @@ public class DashStamina : BaseCollectible
         burst.Play();
         recover.Play();
         StartCoroutine(Recover());
+        AppRoot.Instance.GetService<SfxController>().Play("sfx-magic-hit-1");
     }
 
     private void Awake()
