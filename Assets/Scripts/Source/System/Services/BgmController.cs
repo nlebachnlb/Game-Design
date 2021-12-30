@@ -14,7 +14,7 @@ public class BgmController : Service
         mainSwap = 0;
     }
 
-    public void Play(AudioClip clip, bool crossFade = true, float duration = 1f, bool loop = true)
+    public void Play(AudioClip clip, bool crossFade = true, float duration = 1.5f, bool loop = true)
     {
         int availableLayer = 0;
         for (int i = 0; i < audioLayers.Length; ++i) 
