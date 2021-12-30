@@ -10,7 +10,11 @@ public class RuneBoard : BaseTrigger
     [SerializeField]
     private ParticleSystem liberation, lastLiberation;
     [SerializeField]
-    private SpriteRenderer highlight;
+    private GameObject playerSkillObtain;
+    [SerializeField]
+    private Transform skillPosition;
+
+    private PlayerController player;
 
     private bool canGetSkill = false;
 
@@ -21,15 +25,36 @@ public class RuneBoard : BaseTrigger
 
     private IEnumerator SkillObtaining()
     {
+        var sfx = AppRoot.Instance.GetService<SfxController>();
         GetComponent<Animator>().SetTrigger("Highlight");
+        var fx = Instantiate(playerSkillObtain, player.PlayerView.transform.position, Quaternion.identity);
+        fx.transform.DOMove(skillPosition.position, 2).SetEase(Ease.OutSine);
+        player.PlayerView.gameObject.SetActive(false);
+        player.enabled = false;
+
         yield return new WaitForSeconds(1);
-        app.view.CameraShakeFX.Shake(new Vector2(1f, 0f), 5f, 0.25f);
+        app.view.CameraShakeFX.Shake(new Vector2(1f, 0f), 5f, 0.5f);
         liberation.Play();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
+        sfx.Play("sfx-skill-obtain");
+        yield return new WaitForSeconds(1);
         liberation.Stop();
         yield return new WaitForSeconds(3);
         app.view.CameraShakeFX.Shake(new Vector2(1f, 0f), 5f, 0.5f);
         lastLiberation.Play();
+
+        yield return new WaitForSeconds(2);
+        player.PlayerView.transform.position = fx.gameObject.transform.position;
+        player.PlayerView.gameObject.SetActive(true);
+        Destroy(fx.gameObject);
+
+        Camera.main.transform.DOLocalMoveY(67, 3f).SetEase(Ease.InOutSine);
+        yield return new WaitForSeconds(5);
+
+        Camera.main.transform.DOLocalMoveY(0, 2f).SetEase(Ease.InOutSine);
+
+        player.enabled = true;
+        player.PlayerModel.wallJumpSkill = true;
     }
 
     private void Update()
@@ -65,7 +90,8 @@ public class RuneBoard : BaseTrigger
         {
             completeRuneBoardAction();
         }
-            
+
+        this.player = player;    
     }
 
     public override void OnPlayerExit(PlayerController player)

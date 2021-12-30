@@ -100,6 +100,9 @@ public class PlayerView : View<GameplayApplication>
 
     public void PlayFootstep(int index)
     {
+        if (!sfx)
+            sfx = AppRoot.Instance.GetService<SfxController>();
+       
         sfx.Play("sfx-footstep-" + index);
     }
 
@@ -111,8 +114,6 @@ public class PlayerView : View<GameplayApplication>
         Animator = GetComponent<Animator>();
         Visual = GetComponent<SpriteRenderer>();
         CollisionHandler = GetComponent<PlayerCollisionHandler>();
-
-        sfx = AppRoot.Instance.GetService<SfxController>();
     }
 
     private void Start()

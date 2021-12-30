@@ -183,6 +183,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: b6ec38d42c7e22549b8ec106fdfd758f, type: 3}
   - Name: amb-crickets
     Clip: {fileID: 8300000, guid: eaa2b2cc8d62ed04a9ca95589fdc3d5c, type: 3}
+  - Name: sfx-skill-obtain
+    Clip: {fileID: 8300000, guid: d8e459d3e84d11e47bb798d8b2a01250, type: 3}
   bgm:
   - Name: chapter1
     Clip: {fileID: 8300000, guid: 4fe6f5d84af223e4d9b1fecbcdfc96a4, type: 3}
