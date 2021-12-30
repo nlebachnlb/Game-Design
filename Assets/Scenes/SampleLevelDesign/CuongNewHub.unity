@@ -15193,7 +15193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4517987253536048791, guid: e89e32c4137ec784b8c03bc1ed4feef8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08329212
+      value: 0.09501562
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e89e32c4137ec784b8c03bc1ed4feef8, type: 3}
@@ -64256,7 +64256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4517987253536048791, guid: e89e32c4137ec784b8c03bc1ed4feef8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08329212
+      value: 0.09501562
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e89e32c4137ec784b8c03bc1ed4feef8, type: 3}
@@ -76877,7 +76877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5999008356495430418, guid: cfbab554a41ee477db30f5912e0de31d, type: 3}
       propertyPath: targetSceneName
-      value: C1Tutorial
+      value: Level2
       objectReference: {fileID: 0}
     - target: {fileID: 5999008356495430419, guid: cfbab554a41ee477db30f5912e0de31d, type: 3}
       propertyPath: m_Size.y
@@ -93331,7 +93331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4517987253536048791, guid: e89e32c4137ec784b8c03bc1ed4feef8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08329212
+      value: 0.09501562
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e89e32c4137ec784b8c03bc1ed4feef8, type: 3}
@@ -96511,7 +96511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4517987253536048791, guid: e89e32c4137ec784b8c03bc1ed4feef8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08329212
+      value: 0.09501562
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e89e32c4137ec784b8c03bc1ed4feef8, type: 3}
