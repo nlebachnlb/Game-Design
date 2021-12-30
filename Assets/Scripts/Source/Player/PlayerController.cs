@@ -117,12 +117,13 @@ public class PlayerController : Controller<GameplayApplication>
         if (HorizontalInputDirection != 0f)
         {
             if (PlayerModel.isGrounded)
-                stepTimer += Time.deltaTime;
+                stepTimer += Time.fixedDeltaTime;
 
             if (stepTimer > PlayerModel.stepDuration)
             {
                 stepTimer = 0;
                 PlayerView.PlayFootstep(curStep + 1);
+                Debug.Log("Step");
                 curStep = (curStep + 1) % 2;
             }
 
@@ -155,6 +156,8 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void WallSlide()
     {
+        if (!PlayerModel.wallJumpSkill) return;
+
         if (PlayerModel.facing == 1)
         {
             PlayerModel.isTouchingFront = Physics2D.OverlapCircle(PlayerView.RightCheck.position, PlayerModel.wallSlideColRadius, PlayerModel.whatIsGround);
@@ -202,6 +205,8 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void WallJump()
     {
+        if (!PlayerModel.wallJumpSkill) return;
+
         if (GetJumpKeyDown() && PlayerModel.wallSliding == true)
         {
             PlayerModel.isWallJumping = true;

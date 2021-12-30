@@ -12,8 +12,8 @@ public class PlayerModel : Model<GameplayApplication>
     [HideInInspector]
     public int facing = 1;
 
+    public float stepDuration = 0.4f;
     [HideInInspector]
-    public float stepDuration = 0.2f;
     public float jumpTimeCounter;
     //[HideInInspector]
     public bool isJumping;
@@ -78,6 +78,7 @@ public class PlayerModel : Model<GameplayApplication>
     [Space]
     [Header("Skills")]
     public bool dashSkill;
+    public bool wallJumpSkill = false;
 
     public void ResetJumpTimeCounter()
     {
