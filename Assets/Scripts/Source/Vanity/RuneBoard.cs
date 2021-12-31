@@ -25,6 +25,8 @@ public class RuneBoard : BaseTrigger
 
     private IEnumerator SkillObtaining()
     {
+        AppRoot.Instance.GetService<BgmController>().Stop(true, 4);
+
         var sfx = AppRoot.Instance.GetService<SfxController>();
         GetComponent<Animator>().SetTrigger("Highlight");
         var fx = Instantiate(playerSkillObtain, player.PlayerView.transform.position, Quaternion.identity);
@@ -32,9 +34,11 @@ public class RuneBoard : BaseTrigger
         player.PlayerView.gameObject.SetActive(false);
         player.enabled = false;
 
+        sfx.Play("sfx-skill-absorb");
         yield return new WaitForSeconds(1);
-        app.view.CameraShakeFX.Shake(new Vector2(1f, 0f), 5f, 0.5f);
+        app.view.CameraShakeFX.Shake(new Vector2(1f, 0f), 6f, 0.25f);
         liberation.Play();
+
         yield return new WaitForSeconds(4);
         sfx.Play("sfx-skill-obtain");
         yield return new WaitForSeconds(1);
@@ -43,10 +47,12 @@ public class RuneBoard : BaseTrigger
         app.view.CameraShakeFX.Shake(new Vector2(1f, 0f), 5f, 0.5f);
         lastLiberation.Play();
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         player.PlayerView.transform.position = fx.gameObject.transform.position;
         player.PlayerView.gameObject.SetActive(true);
         Destroy(fx.gameObject);
+
+        yield return new WaitForSeconds(2);
 
         Camera.main.transform.DOLocalMoveY(67, 3f).SetEase(Ease.InOutSine);
         yield return new WaitForSeconds(5);
