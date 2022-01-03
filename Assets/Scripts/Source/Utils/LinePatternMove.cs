@@ -13,25 +13,30 @@ public class LinePatternMove : MonoBehaviour
 
     private IEnumerator Start()
     {
-        int i = 1;
-        int dir = 1;
-        transform.position = points[0].position;
-        while (true)
+        if (points.Count > 0)
         {
-            transform.DOMove(points[i].position, roundtripTime).SetEase(easing);
-            i += dir;
-            if (reverseOnEnd)
+            int i = 1;
+            int dir = 1;
+            transform.position = points[0].position;
+            while (true)
             {
-                if (i >= points.Count || i < 0)
+                transform.DOMove(points[i].position, roundtripTime).SetEase(easing);
+                i += dir;
+                if (reverseOnEnd)
                 {
-                    dir *= -1;
-                    i += dir;
+                    if (i >= points.Count || i < 0)
+                    {
+                        dir *= -1;
+                        i += dir;
+                    }
                 }
-            }
-            else
-                if (i >= points.Count) i = 0;
+                else
+                    if (i >= points.Count) i = 0;
 
-            yield return new WaitForSeconds(roundtripTime + idleTime);
+                yield return new WaitForSeconds(roundtripTime + idleTime);
+            }
         }
+
+        yield return null;
     }
 }

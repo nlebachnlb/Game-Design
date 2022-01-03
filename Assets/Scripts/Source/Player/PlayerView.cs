@@ -27,6 +27,9 @@ public class PlayerView : View<GameplayApplication>
     [SerializeField]
     private Transform leftCheck, rightCheck;
 
+    private AudioClip[] footstep;
+    private SfxController sfx;
+
     public void PlayDash(Vector2 direction)
     {
         dashFx.Play();
@@ -93,6 +96,14 @@ public class PlayerView : View<GameplayApplication>
     public void StopTails()
     {
         tailLeft.Stop();
+    }
+
+    public void PlayFootstep(int index)
+    {
+        if (!sfx)
+            sfx = AppRoot.Instance.GetService<SfxController>();
+       
+        sfx.Play("sfx-footstep-" + index);
     }
 
     private void Awake()

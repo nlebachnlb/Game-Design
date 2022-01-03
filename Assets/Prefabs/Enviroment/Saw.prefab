@@ -107,10 +107,10 @@ GameObject:
   - component: {fileID: 2311548359305429484}
   - component: {fileID: 2311548359305429486}
   - component: {fileID: 2311548359305429485}
-  - component: {fileID: 835201455144621938}
+  - component: {fileID: 8614230143431548633}
   m_Layer: 0
   m_Name: Saw
-  m_TagString: Hazard
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,13 +160,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundtripTime: 0.6
   idleTime: 0.2
-  points:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  points: []
   easing: 16
-  reverseOnEnd: 1
---- !u!114 &835201455144621938
+  reverseOnEnd: 0
+--- !u!114 &8614230143431548633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

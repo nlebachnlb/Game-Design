@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   facing: 0
+  stepDuration: 0.3
   jumpTimeCounter: 0
   isJumping: 0
   isWalking: 0
@@ -84,3 +85,4 @@ MonoBehaviour:
   jumpTime: 0.28
   maxDashTime: 0.15
   dashSkill: 1
+  wallJumpSkill: 0

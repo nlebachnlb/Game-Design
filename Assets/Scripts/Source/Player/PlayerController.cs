@@ -17,6 +17,8 @@ public class PlayerController : Controller<GameplayApplication>
     private int wallSide = 0;
 
     private float speed;
+    private float stepTimer = 0f;
+    private int curStep = 0;
 
     public void UpdateAnimator()
     {
@@ -113,7 +115,20 @@ public class PlayerController : Controller<GameplayApplication>
         PlayerView.UpdateIdleTail();
 
         if (HorizontalInputDirection != 0f)
+        {
+            if (PlayerModel.isGrounded)
+                stepTimer += Time.fixedDeltaTime;
+
+            if (stepTimer > PlayerModel.stepDuration)
+            {
+                stepTimer = 0;
+                PlayerView.PlayFootstep(curStep + 1);
+                Debug.Log("Step");
+                curStep = (curStep + 1) % 2;
+            }
+
             PlayerView.TailsFX.SetTailsLength(4, 4);
+        }
         else
             PlayerView.TailsFX.SetTailsLength();
     }
@@ -141,6 +156,8 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void WallSlide()
     {
+        if (!PlayerModel.wallJumpSkill) return;
+
         if (PlayerModel.facing == 1)
         {
             PlayerModel.isTouchingFront = Physics2D.OverlapCircle(PlayerView.RightCheck.position, PlayerModel.wallSlideColRadius, PlayerModel.whatIsGround);
@@ -188,6 +205,8 @@ public class PlayerController : Controller<GameplayApplication>
 
     private void WallJump()
     {
+        if (!PlayerModel.wallJumpSkill) return;
+
         if (GetJumpKeyDown() && PlayerModel.wallSliding == true)
         {
             PlayerModel.isWallJumping = true;
