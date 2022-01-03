@@ -7876,6 +7876,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1074296011372964463, guid: ad12787083621466bbee116eff1c3b58, type: 3}
+      propertyPath: wallJumpSkill
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074296011372964463, guid: ad12787083621466bbee116eff1c3b58, type: 3}
       propertyPath: wallJumpForce.y
       value: 15
       objectReference: {fileID: 0}
