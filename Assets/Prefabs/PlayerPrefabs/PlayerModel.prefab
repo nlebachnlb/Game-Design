@@ -50,13 +50,13 @@ MonoBehaviour:
   isJumping: 0
   isWalking: 0
   isTouchingFront: 0
-  wallSlideColRadius: 0.3
+  wallSlideColRadius: 0.2
   wallSliding: 0
   wallSlideSpeed: 6
   wallJumpForce: {x: 7, y: 12}
   wallJumpTime: 0.2
   isWallJumping: 0
-  wallCoyoteTime: 0.6
+  wallCoyoteTime: 0.3
   dashTimer: 0
   dashPhase: 0
   dashDirection: {x: 0, y: 0}

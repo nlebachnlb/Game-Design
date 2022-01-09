@@ -180,18 +180,21 @@ public class PlayerController : Controller<GameplayApplication>
             wallSide = 0;
         }
 
-        if (wallJumpBuffer > 0f)
+        if (PlayerModel.isTouchingFront && PlayerModel.isGrounded == false && PlayerView.RB.velocity.y <= 0 && HorizontalInputDirection != 0)
         {
-            wallJumpBuffer -= Time.deltaTime;
-        }
+            if (HorizontalInputDirection == wallSide || wallJumpBuffer > 0)
+            {
+                PlayerModel.wallSliding = true;
 
-        if (PlayerModel.isTouchingFront && PlayerModel.isGrounded == false && HorizontalInputDirection != 0)
-        {
-            PlayerModel.wallSliding = true;
-        }
-        else if (wallJumpBuffer <= 0f)
-        {
-            PlayerModel.wallSliding = false;
+                if (HorizontalInputDirection != wallSide && HorizontalInputDirection != 0)
+                {
+                    wallJumpBuffer -= Time.deltaTime;
+                }
+                else
+                {
+                    wallJumpBuffer = PlayerModel.wallCoyoteTime;
+                }
+            }
         }
 
         if (PlayerModel.wallSliding)
@@ -201,13 +204,16 @@ public class PlayerController : Controller<GameplayApplication>
                 Mathf.Clamp(PlayerView.RB.velocity.y, -PlayerModel.wallSlideSpeed, float.MaxValue)
                 );
         }
+
+        if (!PlayerModel.isTouchingFront || PlayerModel.isGrounded)
+            PlayerModel.wallSliding = false;
     }
 
     private void WallJump()
     {
         if (!PlayerModel.wallJumpSkill) return;
 
-        if (GetJumpKeyDown() && PlayerModel.wallSliding == true)
+        if (GetJumpKeyDown() && PlayerModel.isTouchingFront)
         {
             PlayerModel.isWallJumping = true;
             StopCoroutine(StopWallJumping());
