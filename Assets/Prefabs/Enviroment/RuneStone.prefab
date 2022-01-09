@@ -5235,7 +5235,8 @@ MonoBehaviour:
   - {fileID: 0}
   liberation: {fileID: 5562655257099593000}
   lastLiberation: {fileID: 2592299787153538028}
-  highlight: {fileID: 0}
+  playerSkillObtain: {fileID: 0}
+  skillPosition: {fileID: 0}
 --- !u!95 &869679658
 Animator:
   serializedVersion: 3
