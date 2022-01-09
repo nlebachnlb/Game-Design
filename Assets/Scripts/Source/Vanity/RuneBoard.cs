@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class RuneBoard : BaseTrigger
 {
@@ -13,6 +14,8 @@ public class RuneBoard : BaseTrigger
     private GameObject playerSkillObtain;
     [SerializeField]
     private Transform skillPosition;
+    [SerializeField]
+    private FadeAnimation canvas;
 
     private PlayerController player;
 
@@ -103,6 +106,8 @@ public class RuneBoard : BaseTrigger
     public override void OnPlayerExit(PlayerController player)
     {
         base.OnPlayerExit(player);
+        GetComponent<Animator>().SetTrigger("LightOff");
+        canvas.FadeOut();
     }
 
     private void showRuneOnBoard(int runeIndex)
@@ -114,6 +119,8 @@ public class RuneBoard : BaseTrigger
     {
         Debug.Log("fuck yeah");
         canGetSkill = true;
+        GetComponent<Animator>().SetTrigger("Highlight");
+        canvas.FadeIn();
     }
 
     private void Start()
