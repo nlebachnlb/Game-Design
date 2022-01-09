@@ -192,6 +192,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 4fe6f5d84af223e4d9b1fecbcdfc96a4, type: 3}
   - Name: chapter1-scene1
     Clip: {fileID: 8300000, guid: 016ed65c073b3d942aef39b37c65531b, type: 3}
+  - Name: chapter2
+    Clip: {fileID: 8300000, guid: 64260b6eb27f93645b966f692b6b2863, type: 3}
 --- !u!1 &1051585039406774543
 GameObject:
   m_ObjectHideFlags: 0

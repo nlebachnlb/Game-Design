@@ -49,6 +49,8 @@ public class RuneBoard : BaseTrigger
         yield return new WaitForSeconds(3);
         app.view.CameraShakeFX.Shake(new Vector2(1f, 0f), 5f, 0.5f);
         lastLiberation.Play();
+        var bgm = AppRoot.Instance.GetService<AudioManager>().GetBgm("chapter2");
+        AppRoot.Instance.GetService<BgmController>().Play(bgm);
 
         yield return new WaitForSeconds(3);
         player.PlayerView.transform.position = fx.gameObject.transform.position;
