@@ -56,7 +56,7 @@ MonoBehaviour:
   wallJumpForce: {x: 7, y: 12}
   wallJumpTime: 0.2
   isWallJumping: 0
-  wallCoyoteTime: 0
+  wallCoyoteTime: 0.6
   dashTimer: 0
   dashPhase: 0
   dashDirection: {x: 0, y: 0}

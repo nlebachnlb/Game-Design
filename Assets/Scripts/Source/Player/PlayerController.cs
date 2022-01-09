@@ -213,6 +213,7 @@ public class PlayerController : Controller<GameplayApplication>
             StopCoroutine(StopWallJumping());
             StartCoroutine(StopWallJumping());
             wallJumpBuffer = PlayerModel.wallCoyoteTime;
+            PlayerModel.wallSliding = false;
         }
 
         if (PlayerModel.isWallJumping)
